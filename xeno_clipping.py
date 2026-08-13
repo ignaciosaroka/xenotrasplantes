@@ -250,36 +250,6 @@ DOMINIOS_EXCLUIDOS = [
     "investing.com", "zacks.com", "benzinga.com", "stocktwits.com",
 ]
 
-# --- Fuentes directas por RSS -------------------------------------------------
-# Estas son las fuentes que Google News indexa mal, sobre todo por muros de
-# pago. Se consultan directo. Cada entrada es (etiqueta, url del feed).
-#
-# Se filtran por palabra clave: estos medios publican de todo, así que sólo
-# entra lo que menciona algún término del campo (ver FILTRO_FEEDS más abajo).
-FEEDS_DIRECTOS = [
-    # Reporteo original especializado
-    ("STAT News",              "https://www.statnews.com/feed/"),
-    ("Endpoints News",         "https://endpoints.news/feed/"),
-    ("Fierce Biotech",         "https://www.fiercebiotech.com/rss/xml"),
-    ("MIT Technology Review",  "https://www.technologyreview.com/feed/"),
-    ("NPR Salud",              "https://feeds.npr.org/1128/rss.xml"),
-    ("Nature (noticias)",      "https://www.nature.com/nature.rss"),
-    ("Science (noticias)",     "https://www.science.org/rss/news_current.xml"),
-    # Fuentes primarias institucionales
-    ("NYU Langone",            "https://nyulangone.org/news/rss.xml"),
-    ("Mass General Brigham",   "https://www.massgeneralbrigham.org/en/about/newsroom/rss"),
-    ("NIH",                    "https://www.nih.gov/news-events/news-releases/feed.xml"),
-    ("FDA (biológicos)",       "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/biologics/rss.xml"),
-]
-
-# Un ítem de esos feeds sólo entra si menciona alguno de estos términos.
-FILTRO_FEEDS = [
-    "xenotransplant", "xenotrasplant", "xenograft", "xenokidney", "xenoheart",
-    "pig kidney", "pig heart", "pig liver", "pig lung", "pig organ",
-    "porcine organ", "porcine kidney", "gene-edited pig", "pig-to-human",
-    "riñón de cerdo", "órgano de cerdo", "corazón de cerdo",
-]
-
 # --- Jerarquía de fuentes -----------------------------------------------------
 # Nivel 1 = fuente primaria: acá nace la noticia (comunicados institucionales,
 #           registros oficiales, revistas científicas).
