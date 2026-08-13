@@ -182,6 +182,9 @@ INCLUIR_FEEDS_DIRECTOS = True
 
 FEEDS_DIRECTOS = [
     # --- reporteo original (nivel 2) ---
+    # OJO: estos feeds sólo traen los últimos 10-25 artículos, o sea unas
+    # pocas horas de producción. No alcanzan para cubrir una semana; por eso
+    # además se los busca por sitio en BUSQUEDAS_SITIOS, más abajo.
     ("STAT News",            "https://www.statnews.com/feed/", 2),
     ("Fierce Biotech",       "https://www.fiercebiotech.com/rss/xml", 2),
     ("Endpoints News",       "https://endpoints.news/feed/", 2),
@@ -190,16 +193,8 @@ FEEDS_DIRECTOS = [
      "https://www.technologyreview.com/topic/biotechnology/feed", 2),
     ("Nature (noticias)",    "https://www.nature.com/nature.rss", 2),
     ("Science (noticias)",   "https://www.science.org/rss/news_current.xml", 2),
-
-    # --- fuentes primarias institucionales (nivel 1) ---
-    ("NYU Langone",          "https://nyulangone.org/news/rss.xml", 1),
-    ("Mass General Brigham",
-     "https://www.massgeneralbrigham.org/en/about/newsroom/rss", 1),
-    ("FDA — biológicos",
-     "https://www.fda.gov/about-fda/contact-fda/stay-informed/"
-     "rss-feeds/biologics/rss.xml", 1),
-    ("NIH",                  "https://www.nih.gov/news-events/news-releases/feed.xml", 1),
 ]
+
 
 # Un ítem de estos feeds sólo se conserva si su título o resumen menciona
 # alguna de estas palabras. Sin esto entraría todo el sector salud.
@@ -249,6 +244,31 @@ DOMINIOS_EXCLUIDOS = [
     "openpr.com", "einpresswire.com", "dagens.com", "msn.com",
     "investing.com", "zacks.com", "benzinga.com", "stocktwits.com",
 ]
+
+# --- Búsquedas por sitio ------------------------------------------------------
+# Los feeds de arriba sólo traen las últimas horas de publicación, así que se
+# los busca TAMBIÉN por sitio dentro de Google News. Esto cubre además a las
+# instituciones, cuyos RSS propios cambian de dirección o directamente no
+# existen: los comunicados igual quedan indexados.
+#
+# Cada línea es un dominio. El script arma la consulta solo.
+SITIOS_PRIORITARIOS = [
+    # reporteo original
+    "statnews.com", "endpoints.news", "fiercebiotech.com",
+    "technologyreview.com", "npr.org", "nature.com", "science.org",
+    "nytimes.com", "washingtonpost.com", "reuters.com", "apnews.com",
+    # instituciones y empresas (fuente primaria)
+    "nyulangone.org", "massgeneralbrigham.org", "hopkinsmedicine.org",
+    "medschool.umaryland.edu", "uab.edu", "nih.gov", "fda.gov",
+    "unitedtherapeutics.com", "egenesis.com", "businesswire.com",
+    "prnewswire.com",
+]
+
+# Términos que se combinan con cada sitio. Van en una sola consulta para no
+# multiplicar el número de búsquedas.
+TERMINOS_SITIOS = ('xenotransplantation OR xenotransplant OR "pig kidney" '
+                   'OR "pig heart" OR "pig liver" OR "pig organ" '
+                   'OR "gene-edited pig"')
 
 # --- Jerarquía de fuentes -----------------------------------------------------
 # Nivel 1 = fuente primaria: acá nace la noticia (comunicados institucionales,
@@ -415,7 +435,9 @@ def recolectar_google_news():
 
     trabajos = ([(c, "es") for c in BUSQUEDAS_ES] +
                 [(c, "en") for c in BUSQUEDAS_EN] +
-                [(c, "en") for c in BUSQUEDAS_ACTORES])
+                [(c, "en") for c in BUSQUEDAS_ACTORES] +
+                [(f"site:{d} ({TERMINOS_SITIOS})", "en")
+                 for d in SITIOS_PRIORITARIOS])
 
     for consulta, idioma in trabajos:
         url = url_google_news(consulta, idioma)
@@ -452,7 +474,11 @@ def recolectar_google_news():
 
         traidos = len(resultados) - antes
         aviso = "   <-- sin resultados" if traidos == 0 else ""
-        print(f"  {consulta[:44]:<46}{traidos:>4}{aviso}")
+        # Las consultas por sitio son larguísimas; en el log va sólo el sitio.
+        etiqueta = consulta
+        if etiqueta.startswith("site:"):
+            etiqueta = "sitio: " + etiqueta[5:].split(" ")[0]
+        print(f"  {etiqueta[:44]:<46}{traidos:>4}{aviso}")
 
         time.sleep(1.5)  # cortesía con el servidor de Google
 
@@ -1121,6 +1147,13 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
         for n in (1, 2, 3):
             c = sum(1 for i in prensa_informe if nivel_de(i) == n)
             print(f"  {n} · {ETIQUETA_NIVEL[n]:<26}{c:>4}  {'#' * c}")
+        n12 = sum(1 for i in prensa_informe if nivel_de(i) in (1, 2))
+        if n12 == 0:
+            print("\n  → No entró NADA de fuente primaria ni de reporteo")
+            print("    original. Mirá arriba las líneas que empiezan con")
+            print("    'sitio:': si están todas en cero, Google no está")
+            print("    respondiendo a las búsquedas por sitio.")
+
         n3 = sum(1 for i in prensa_informe if nivel_de(i) == 3)
         if n3 > len(prensa_informe) * 0.5:
             print("\n  → Más de la mitad de la prensa viene de reescritura.")
