@@ -55,13 +55,17 @@ from reportlab.platypus import (
 VENTANA_DIAS = 7
 
 # --- Dónde se guardan las cosas ----------------------------------------------
-# Cambiá esta ruta por la carpeta que quieras usar.
-CARPETA_SALIDA = r"C:\Users\nsaro\OneDrive\Desktop\Claude Raúl"
+# Por defecto, una subcarpeta "salida" al lado del script. Así el mismo
+# archivo funciona en tu PC y en un servidor, sin tocar nada.
+# Podés forzar otra ruta con la variable de entorno XENO_SALIDA.
+CARPETA_SALIDA = os.environ.get(
+    "XENO_SALIDA",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "salida"))
 
 # --- Clave de la API de Anthropic --------------------------------------------
-# Se lee de la variable de entorno ANTHROPIC_API_KEY.
-# Si preferís, podés pegarla acá directamente entre las comillas, pero es
-# mejor práctica usar la variable de entorno.
+# Se lee SIEMPRE de la variable de entorno ANTHROPIC_API_KEY.
+# NUNCA pegues la clave dentro de este archivo: si el archivo va a un
+# repositorio, la clave queda expuesta y hay que darla de baja.
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 # Modelo. Haiku es barato y alcanza de sobra para esta tarea.
@@ -165,6 +169,154 @@ CONSULTA_ENSAYOS = ('xenotransplantation OR xenotransplant OR xenokidney '
 # Las patentes muestran líneas porcinas y técnicas años antes que los papers.
 CLAVE_PATENTES = os.environ.get("PATENTSVIEW_API_KEY", "")
 CONSULTA_PATENTES = "xenotransplantation"
+
+# --- Feeds directos de medios especializados e instituciones ------------------
+# Google News indexa mal lo que está detrás de un muro de pago, y en cambio
+# indexa bien al agregador que reescribe la misma noticia sin muro. Resultado:
+# tiene un sesgo hacia las fuentes de menor valor. Estos feeds entran por su
+# cuenta para corregir eso.
+#
+# Como estos medios cubren todo el sector salud y no sólo xenotrasplantes,
+# después se filtran por palabra clave (ver FILTRO_FEEDS más abajo).
+INCLUIR_FEEDS_DIRECTOS = True
+
+FEEDS_DIRECTOS = [
+    # --- reporteo original (nivel 2) ---
+    ("STAT News",            "https://www.statnews.com/feed/", 2),
+    ("Fierce Biotech",       "https://www.fiercebiotech.com/rss/xml", 2),
+    ("Endpoints News",       "https://endpoints.news/feed/", 2),
+    ("NPR Salud",            "https://feeds.npr.org/1128/rss.xml", 2),
+    ("MIT Technology Review",
+     "https://www.technologyreview.com/topic/biotechnology/feed", 2),
+    ("Nature (noticias)",    "https://www.nature.com/nature.rss", 2),
+    ("Science (noticias)",   "https://www.science.org/rss/news_current.xml", 2),
+
+    # --- fuentes primarias institucionales (nivel 1) ---
+    ("NYU Langone",          "https://nyulangone.org/news/rss.xml", 1),
+    ("Mass General Brigham",
+     "https://www.massgeneralbrigham.org/en/about/newsroom/rss", 1),
+    ("FDA — biológicos",
+     "https://www.fda.gov/about-fda/contact-fda/stay-informed/"
+     "rss-feeds/biologics/rss.xml", 1),
+    ("NIH",                  "https://www.nih.gov/news-events/news-releases/feed.xml", 1),
+]
+
+# Un ítem de estos feeds sólo se conserva si su título o resumen menciona
+# alguna de estas palabras. Sin esto entraría todo el sector salud.
+FILTRO_FEEDS = [
+    "xenotransplant", "xenotransplantation", "xenograft", "xenotrasplante",
+    "pig kidney", "pig heart", "pig liver", "pig lung", "pig organ",
+    "porcine organ", "porcine kidney", "gene-edited pig", "gene edited pig",
+    "genetically modified pig", "egenesis", "revivicor", "united therapeutics",
+    "clonorgan", "makana", "qihan", "choironex", "organ shortage",
+    "cerdo", "porcino",
+]
+
+# --- Niveles de fuente ---------------------------------------------------------
+# 1 = fuente primaria: acá nace la noticia (comunicados, registros, revistas).
+# 2 = reporteo original: alguien verifica, llama, agrega contexto.
+# 3 = reescritura: reformula lo ajeno sin agregar nada. Es de donde salen los
+#     errores más caros, como un hecho de 2024 republicado como novedad.
+# Lo que no esté en esta lista se marca como nivel desconocido y se trata
+# con la misma cautela que el 3.
+NIVEL_POR_DOMINIO = {
+    # nivel 1 — primarias
+    "clinicaltrials.gov": 1, "europepmc.org": 1, "doi.org": 1,
+    "pubmed.ncbi.nlm.nih.gov": 1, "biorxiv.org": 1, "medrxiv.org": 1,
+    "businesswire.com": 1, "prnewswire.com": 1, "globenewswire.com": 1,
+    "nyulangone.org": 1, "massgeneralbrigham.org": 1, "fda.gov": 1,
+    "nih.gov": 1, "who.int": 1, "ema.europa.eu": 1, "argentina.gob.ar": 1,
+    "unitedtherapeutics.com": 1, "egenesis.com": 1, "harvard.edu": 1,
+    "uba.ar": 1, "unsam.edu.ar": 1, "patents.google.com": 1,
+
+    # nivel 2 — reporteo original
+    "statnews.com": 2, "endpoints.news": 2, "fiercebiotech.com": 2,
+    "fiercepharma.com": 2, "npr.org": 2, "technologyreview.com": 2,
+    "nature.com": 2, "science.org": 2, "nytimes.com": 2,
+    "washingtonpost.com": 2, "wsj.com": 2, "reuters.com": 2, "apnews.com": 2,
+    "bloomberg.com": 2, "ft.com": 2, "theguardian.com": 2, "bbc.com": 2,
+    "bbc.co.uk": 2, "japantimes.co.jp": 2, "nippon.com": 2, "elpais.com": 2,
+    "lanacion.com.ar": 2, "clarin.com": 2, "infobae.com": 2,
+    "scientificamerican.com": 2, "newscientist.com": 2, "wired.com": 2,
+    "medscape.com": 2, "kffhealthnews.org": 2, "cnn.com": 2, "nbcnews.com": 2,
+}
+
+# Dominios que ya demostraron no aportar: terminales de datos financieros,
+# consultoras de informes de mercado y agregadores que reciclan sin fechar.
+DOMINIOS_EXCLUIDOS = [
+    "simplywall.st", "marketscreener.com", "tradingview.com",
+    "futuremarketinsights.com", "marketresearch", "researchandmarkets.com",
+    "openpr.com", "einpresswire.com", "dagens.com", "msn.com",
+    "investing.com", "zacks.com", "benzinga.com", "stocktwits.com",
+]
+
+# --- Fuentes directas por RSS -------------------------------------------------
+# Estas son las fuentes que Google News indexa mal, sobre todo por muros de
+# pago. Se consultan directo. Cada entrada es (etiqueta, url del feed).
+#
+# Se filtran por palabra clave: estos medios publican de todo, así que sólo
+# entra lo que menciona algún término del campo (ver FILTRO_FEEDS más abajo).
+FEEDS_DIRECTOS = [
+    # Reporteo original especializado
+    ("STAT News",              "https://www.statnews.com/feed/"),
+    ("Endpoints News",         "https://endpoints.news/feed/"),
+    ("Fierce Biotech",         "https://www.fiercebiotech.com/rss/xml"),
+    ("MIT Technology Review",  "https://www.technologyreview.com/feed/"),
+    ("NPR Salud",              "https://feeds.npr.org/1128/rss.xml"),
+    ("Nature (noticias)",      "https://www.nature.com/nature.rss"),
+    ("Science (noticias)",     "https://www.science.org/rss/news_current.xml"),
+    # Fuentes primarias institucionales
+    ("NYU Langone",            "https://nyulangone.org/news/rss.xml"),
+    ("Mass General Brigham",   "https://www.massgeneralbrigham.org/en/about/newsroom/rss"),
+    ("NIH",                    "https://www.nih.gov/news-events/news-releases/feed.xml"),
+    ("FDA (biológicos)",       "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/biologics/rss.xml"),
+]
+
+# Un ítem de esos feeds sólo entra si menciona alguno de estos términos.
+FILTRO_FEEDS = [
+    "xenotransplant", "xenotrasplant", "xenograft", "xenokidney", "xenoheart",
+    "pig kidney", "pig heart", "pig liver", "pig lung", "pig organ",
+    "porcine organ", "porcine kidney", "gene-edited pig", "pig-to-human",
+    "riñón de cerdo", "órgano de cerdo", "corazón de cerdo",
+]
+
+# --- Jerarquía de fuentes -----------------------------------------------------
+# Nivel 1 = fuente primaria: acá nace la noticia (comunicados institucionales,
+#           registros oficiales, revistas científicas).
+# Nivel 2 = reporteo original: alguien verifica, llama, agrega contexto.
+# Nivel 3 = reescritura: reproduce material ajeno sin agregar nada.
+#
+# Las listas son de fragmentos: basta que el nombre del medio contenga el texto.
+MEDIOS_NIVEL_1 = [
+    "nyu langone", "mass general", "massgeneral", "johns hopkins",
+    "university of maryland", "uab", "nih", "fda", "who", "oms",
+    "business wire", "businesswire", "pr newswire", "prnewswire",
+    "egenesis", "united therapeutics", "clinicaltrials.gov", "europe pmc",
+    "uspto", "harvard", "incucai", "uba", "unsam", "conicet",
+]
+
+MEDIOS_NIVEL_2 = [
+    "stat", "endpoints", "fierce", "technology review", "npr", "nature",
+    "science", "new york times", "nytimes", "washington post", "reuters",
+    "associated press", "ap news", "bloomberg", "wall street journal",
+    "financial times", "the guardian", "bbc", "el país", "el pais",
+    "la nación", "la nacion", "clarín", "clarin", "infobae", "japan times",
+    "scientific american", "new scientist", "der spiegel", "le monde",
+    "página/12", "pagina 12", "el mercurio", "la tercera",
+]
+
+# Medios que ya demostraron no aportar. No se recolectan.
+MEDIOS_EXCLUIDOS = [
+    # terminales de datos financieros y análisis bursátil automatizado
+    "simplywall", "marketscreener", "tradingview", "zacks", "insider monkey",
+    "motley fool", "benzinga", "stocktwits", "investing.com", "gurufocus",
+    # consultoras de informes de mercado
+    "future market insights", "market research", "marketwatch press",
+    "grand view research", "precedence research", "researchandmarkets",
+    "openpr", "einpresswire", "globenewswire",
+    # agregadores sin reporteo propio
+    "dagens.com", "msn.com", "yahoo.com", "news18", "opoyi", "newsbreak",
+]
 
 # --- Umbral de relevancia ----------------------------------------------------
 # Claude puntúa cada nota de 1 a 5. Se incluyen las que superan este número.
@@ -337,6 +489,122 @@ def recolectar_google_news():
     return resultados
 
 
+def dominio(url):
+    """Devuelve el dominio de una URL, sin 'www.'."""
+    try:
+        d = urllib.parse.urlparse(url).netloc.lower()
+    except Exception:
+        return ""
+    return d[4:] if d.startswith("www.") else d
+
+
+def nivel_de(item):
+    """
+    Nivel de la fuente: 1 primaria, 2 reporteo original, 3 reescritura o
+    desconocida.
+
+    Se resuelve en dos pasos porque las dos vías tienen puntos ciegos
+    distintos:
+
+      1. Por dominio de la URL. Es lo más confiable, pero NO sirve para lo
+         que viene de Google News: esos enlaces apuntan todos a
+         news.google.com y ocultan el medio real.
+      2. Por nombre del medio. Es lo único disponible en el caso anterior,
+         aunque es más frágil (dos medios pueden llamarse parecido).
+
+    Los ítems que no vienen de prensa son primarios por definición: un
+    registro de ensayos o un paper son la fuente misma.
+    """
+    if item.get("tipo") in ("paper", "preprint", "ensayo", "patente"):
+        return 1
+
+    d = dominio(item.get("url", ""))
+    if d and "news.google" not in d:
+        for clave, n in NIVEL_POR_DOMINIO.items():
+            if d == clave or d.endswith("." + clave):
+                return n
+
+    f = normalizar(item.get("fuente", ""))
+    if f:
+        if any(normalizar(x) in f for x in MEDIOS_NIVEL_1):
+            return 1
+        if any(normalizar(x) in f for x in MEDIOS_NIVEL_2):
+            return 2
+
+    return 3
+
+
+def esta_excluido(item):
+    """True si la fuente ya demostró no aportar. Chequea dominio y nombre."""
+    d = dominio(item.get("url", ""))
+    if d and any(x in d for x in DOMINIOS_EXCLUIDOS):
+        return True
+    f = normalizar(item.get("fuente", ""))
+    return bool(f) and any(normalizar(x) in f for x in MEDIOS_EXCLUIDOS)
+
+
+ETIQUETA_NIVEL = {
+    1: "fuente primaria",
+    2: "reporteo original",
+    3: "reescritura / sin verificar",
+}
+
+
+def recolectar_feeds_directos():
+    """
+    Lee los feeds de medios especializados e instituciones, y se queda con
+    lo que menciona el tema. Corrige el sesgo de Google News hacia las
+    fuentes de menor valor.
+    """
+    if not INCLUIR_FEEDS_DIRECTOS:
+        return []
+
+    corte = datetime.now(timezone.utc) - timedelta(days=VENTANA_DIAS)
+    salida = []
+
+    for nombre, url, nivel in FEEDS_DIRECTOS:
+        try:
+            feed = feedparser.parse(url, agent=NAVEGADOR)
+        except Exception as e:
+            print(f"  {nombre[:30]:<32} ERROR: {e}")
+            continue
+
+        pertinentes = 0
+        for e in feed.entries:
+            fecha = None
+            if getattr(e, "published_parsed", None):
+                fecha = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
+            elif getattr(e, "updated_parsed", None):
+                fecha = datetime(*e.updated_parsed[:6], tzinfo=timezone.utc)
+            if fecha is None or fecha < corte:
+                continue
+
+            titulo = limpiar_html(e.get("title", ""))
+            extracto = limpiar_html(e.get("summary", ""))[:600]
+            texto = (titulo + " " + extracto).lower()
+
+            if not any(p in texto for p in FILTRO_FEEDS):
+                continue
+
+            salida.append({
+                "titulo": titulo,
+                "fuente": nombre,
+                "url": e.get("link", ""),
+                "fecha": fecha,
+                "extracto": extracto,
+                "tipo": "prensa",
+                "nivel": nivel,
+            })
+            pertinentes += 1
+
+        total = len(feed.entries)
+        aviso = "   <-- feed vacío o caído" if total == 0 else ""
+        print(f"  {nombre[:30]:<32}{pertinentes:>4} de {total:<4}{aviso}")
+        time.sleep(0.5)
+
+    return salida
+
+
 def _traer_json(url, cabeceras=None):
     pedido = urllib.request.Request(url, headers=cabeceras or {})
     with urllib.request.urlopen(pedido, timeout=40) as r:
@@ -433,7 +701,14 @@ def recolectar_ensayos():
         print(f"    ERROR en ClinicalTrials.gov: {e}")
         return []
 
+    # El buscador del registro expande los términos con sinónimos por su
+    # cuenta y reintroduce "xenograft" en sentido oncológico y odontológico.
+    # Por eso se filtra sobre el resultado, exigiendo mención porcina.
+    TERMINOS_PORCINOS = ("pig", "porcine", "swine", "xenotransplant",
+                         "xenokidney", "xenoheart", "cerdo")
+
     salida = []
+    descartados = 0
     for est in datos.get("studies", []):
         p = est.get("protocolSection", {})
         ident = p.get("identificationModule", {})
@@ -449,6 +724,14 @@ def recolectar_ensayos():
         except Exception:
             fecha = datetime.now(timezone.utc)
 
+        resumen_est = (p.get("descriptionModule", {})
+                        .get("briefSummary", ""))
+        texto_est = normalizar(f"{ident.get('briefTitle','')} "
+                               f"{ident.get('officialTitle','')} {resumen_est}")
+        if not any(t in texto_est for t in TERMINOS_PORCINOS):
+            descartados += 1
+            continue
+
         fases = ", ".join(p.get("designModule", {}).get("phases", []) or [])
         salida.append({
             "titulo": ident.get("briefTitle", nct),
@@ -462,6 +745,9 @@ def recolectar_ensayos():
                          f"Patrocinante: {patro}."),
             "tipo": "ensayo",
         })
+
+    if descartados:
+        print(f"    {descartados} ensayos descartados por no ser del campo")
 
     return salida
 
@@ -511,6 +797,7 @@ def recolectar_patentes():
     return salida
 
 
+
 # ------------------------------------------------------------- deduplicación
 
 def deduplicar(items):
@@ -523,12 +810,22 @@ def deduplicar(items):
         clave = normalizar(item["titulo"])
         if not clave:
             continue
+        if esta_excluido(item):
+            continue
         item["huella"] = clave[:120]
+        item["nivel"] = nivel_de(item)
 
         encontrado = False
         for u in unicos:
             if parecidos(clave, normalizar(u["titulo"])):
                 u["replicas"] = u.get("replicas", 1) + 1
+                # Si la réplica viene de mejor fuente, nos quedamos con esa:
+                # la misma noticia contada por STAT vale más que por un
+                # agregador.
+                if nivel_de(item) < nivel_de(u):
+                    for c in ("titulo", "fuente", "url", "extracto", "nivel"):
+                        if c in item:
+                            u[c] = item[c]
                 encontrado = True
                 break
         if not encontrado:
@@ -568,6 +865,21 @@ Para cada ítem devolvé:
   Los ítems de tipo "ensayo" y "patente" rara vez bajan de 3: aunque el titular
   sea árido, son señal temprana y el usuario los quiere ver.
 
+  Cada ítem trae un campo "nivel": 1 es fuente primaria (comunicado
+  institucional, registro oficial, revista científica), 2 es reporteo original
+  de un medio que verifica y agrega contexto, 3 es reescritura de material
+  ajeno. Usalo así:
+    - Nunca pongas 5 a un ítem de nivel 3. Un hito real lo publica primero una
+      fuente primaria o un medio de reporteo original; si sólo lo trae un sitio
+      de reescritura, es contenido reciclado o mal fechado, y va como máximo 3.
+    - Ante la duda entre dos puntajes, el nivel 1 o 2 sube y el 3 baja.
+
+  Bajá a 2 lo que sea sobre la cotización bursátil, resultados trimestrales o
+  gobierno corporativo de una empresa del rubro: es información financiera, no
+  del campo. Bajá también a 2 los estudios de biología porcina general (genómica
+  del cerdo, fisiología, producción animal) que no tengan relación explícita con
+  trasplante a humanos.
+
 - "categoria": exactamente una de estas etiquetas:
     "Hitos clínicos" — procedimientos en pacientes, resultados, supervivencia.
     "Ciencia y preprints" — investigación básica, edición génica, inmunología,
@@ -605,6 +917,7 @@ def clasificar(items, cliente):
                 "titulo": it["titulo"],
                 "fuente": it["fuente"],
                 "fecha": it["fecha"].strftime("%Y-%m-%d"),
+                "nivel_fuente": nivel_de(it),
                 "extracto": it["extracto"],
             }
             for i, it in enumerate(tanda)
@@ -734,13 +1047,27 @@ def generar_pdf(items, menciones, ruta):
                          "patente": " · patente"}
             tipo = etiquetas.get(it.get("tipo"), "")
 
+            nivel = it.get("nivel", 3)
+            if nivel == 3:
+                sello = ('<font color="#b06a00"> · '
+                         + ETIQUETA_NIVEL[3] + "</font>")
+            else:
+                sello = f" · {ETIQUETA_NIVEL[nivel]}"
+
+            n = nivel_de(it)
+            if it.get("tipo") == "prensa":
+                color = {1: "#1e6f50", 2: "#1a4d8f"}.get(n, "#b03a2e")
+                sello = (f' · <font color="{color}">{ETIQUETA_NIVEL[n]}</font>')
+            else:
+                sello = ""
+
             bloque = [
                 Paragraph(f"<b>{escapar(it['titulo'])}</b>{marca}",
                           st["nota"]),
                 Paragraph(escapar(it.get("resumen", "")), st["nota"]),
                 Paragraph(
                     f"{escapar(it['fuente'])} · "
-                    f"{it['fecha'].strftime('%d/%m/%Y')}{eco}{tipo} · "
+                    f"{it['fecha'].strftime('%d/%m/%Y')}{eco}{tipo}{sello} · "
                     f'<link href="{it["url"]}" color="#1a4d8f">ver nota</link>',
                     st["meta"]),
             ]
@@ -817,6 +1144,18 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
     perdidos_vistos = len(unicos) - len(nuevos)
     perdidos_ruido = len(nuevos) - len(en_informe)
 
+    # Composición por nivel de fuente de lo que llegó al informe.
+    prensa_informe = [i for i in en_informe if i.get("tipo") == "prensa"]
+    if prensa_informe:
+        print("\nCalidad de las fuentes de prensa del informe:")
+        for n in (1, 2, 3):
+            c = sum(1 for i in prensa_informe if nivel_de(i) == n)
+            print(f"  {n} · {ETIQUETA_NIVEL[n]:<26}{c:>4}  {'#' * c}")
+        n3 = sum(1 for i in prensa_informe if nivel_de(i) == 3)
+        if n3 > len(prensa_informe) * 0.5:
+            print("\n  → Más de la mitad de la prensa viene de reescritura.")
+            print("    Revisá si los feeds directos respondieron (etapa 2).")
+
     print("\nDónde se fue el material:")
     print(f"  {perdidos_dup:>5} descartados por duplicado "
           f"(la misma noticia en varios medios)")
@@ -835,6 +1174,14 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
         print("    más arriba: si muchas dicen '<-- sin resultados', Google")
         print("    está devolviendo feeds vacíos. Esperá unos minutos y")
         print("    volvé a correrlo.")
+
+    n3 = sum(1 for i in en_informe
+             if i.get("tipo") == "prensa" and nivel_de(i) == 3)
+    prensa_inf = sum(1 for i in en_informe if i.get("tipo") == "prensa")
+    if prensa_inf and n3 > prensa_inf * 0.5:
+        print("\n  → Más de la mitad de la prensa del informe es de")
+        print("    reescritura. Revisá esos ítems antes de reenviarlos:")
+        print("    es de donde salen los falsos hitos.")
 
     for t in ("paper", "ensayo"):
         n, ok = contar(nuevos, t), contar(en_informe, t)
@@ -870,22 +1217,32 @@ def main():
     modo = " (modo repaso: se ignora la base de vistos)" if args.rehacer else ""
     print(f"\nVentana: últimos {VENTANA_DIAS} días{modo}")
 
-    print("\n[1/6] Recolectando prensa...")
+    print("\n[1/7] Recolectando prensa (Google News)...")
     crudos = recolectar_google_news()
     print(f"      {len(crudos)} resultados en bruto")
 
-    print("\n[2/6] Recolectando literatura científica y preprints...")
+    print("\n[2/7] Recolectando medios especializados e instituciones...")
+    directos = recolectar_feeds_directos()
+    print(f"      {len(directos)} pertinentes")
+    crudos += directos
+
+    print("\n[3/7] Recolectando literatura científica y preprints...")
     ciencia = recolectar_ciencia()
     print(f"      {len(ciencia)} papers y preprints")
 
-    print("\n[3/6] Recolectando ensayos y patentes...")
+    print("\n[4/7] Recolectando ensayos y patentes...")
     ensayos = recolectar_ensayos()
     patentes = recolectar_patentes()
     print(f"      {len(ensayos)} ensayos · {len(patentes)} patentes")
 
     crudos += ciencia + ensayos + patentes
 
-    print("\n[4/6] Eliminando duplicados y ya vistos...")
+    print("\n[5/7] Filtrando, deduplicando y descartando ya vistos...")
+    antes_excl = len(crudos)
+    crudos = [i for i in crudos if not esta_excluido(i)]
+    excluidos = antes_excl - len(crudos)
+    if excluidos:
+        print(f"      {excluidos} descartados por dominio excluido")
     unicos = deduplicar(crudos)
     if args.rehacer:
         nuevos = unicos
@@ -899,11 +1256,11 @@ def main():
         con.close()
         return
 
-    print("\n[5/6] Clasificando y resumiendo...")
+    print("\n[6/7] Clasificando y resumiendo...")
     seleccion, menciones = clasificar(nuevos, cliente)
     print(f"      {len(seleccion)} destacados · {len(menciones)} menciones")
 
-    print("\n[6/6] Generando informe...")
+    print("\n[7/7] Generando informe...")
     sello = datetime.now().strftime("%Y-%m-%d")
     sufijo = "_repaso" if args.rehacer else ""
     ruta_pdf = os.path.join(
