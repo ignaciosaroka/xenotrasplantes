@@ -1140,6 +1140,16 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
     perdidos_vistos = len(unicos) - len(nuevos)
     perdidos_ruido = len(nuevos) - len(en_informe)
 
+    # Composición por nivel ANTES de filtrar. Esta es la tabla que dice si las
+    # fuentes buenas están entrando al sistema; la de abajo dice si llegan al
+    # informe, que depende además de la relevancia y de la base de vistos.
+    prensa_cruda = [i for i in unicos if i.get("tipo") == "prensa"]
+    if prensa_cruda:
+        print("\nNivel de TODA la prensa recolectada (antes de filtrar):")
+        for n in (1, 2, 3):
+            c = sum(1 for i in prensa_cruda if nivel_de(i) == n)
+            print(f"  {n} · {ETIQUETA_NIVEL[n]:<26}{c:>4}  {'#' * min(c, 40)}")
+
     # Composición por nivel de fuente de lo que llegó al informe.
     prensa_informe = [i for i in en_informe if i.get("tipo") == "prensa"]
     if prensa_informe:
@@ -1147,17 +1157,17 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
         for n in (1, 2, 3):
             c = sum(1 for i in prensa_informe if nivel_de(i) == n)
             print(f"  {n} · {ETIQUETA_NIVEL[n]:<26}{c:>4}  {'#' * c}")
-        n12 = sum(1 for i in prensa_informe if nivel_de(i) in (1, 2))
-        if n12 == 0:
-            print("\n  → No entró NADA de fuente primaria ni de reporteo")
-            print("    original. Mirá arriba las líneas que empiezan con")
-            print("    'sitio:': si están todas en cero, Google no está")
-            print("    respondiendo a las búsquedas por sitio.")
-
         n3 = sum(1 for i in prensa_informe if nivel_de(i) == 3)
         if n3 > len(prensa_informe) * 0.5:
             print("\n  → Más de la mitad de la prensa viene de reescritura.")
             print("    Revisá si los feeds directos respondieron (etapa 2).")
+
+    if prensa_cruda:
+        n2_crudo = sum(1 for i in prensa_cruda if nivel_de(i) == 2)
+        if n2_crudo == 0:
+            print("\n  → No entró NADA de reporteo original (nivel 2).")
+            print("    Mirá arriba las líneas 'sitio:': si están en cero,")
+            print("    Google no responde a las búsquedas por sitio.")
 
     print("\nDónde se fue el material:")
     print(f"  {perdidos_dup:>5} descartados por duplicado "
