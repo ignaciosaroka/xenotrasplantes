@@ -1108,6 +1108,52 @@ def exportar_archivo_historico(con, ruta):
     return len(filas)
 
 
+def exportar_seleccion(items, menciones, ruta, dias):
+    """
+    Vuelca lo que pasó el triage a un JSON, para que la capa editorial
+    (la skill de Cowork) lo tome desde ahí.
+
+    Este archivo es el punto de entrega del script: hasta acá llega la
+    máquina —recolectar, deduplicar, puntuar—, y de acá en adelante se
+    leen las notas y se redacta.
+
+    El campo "resumen_previo" es el resumen automático hecho a partir del
+    titular y el extracto. NO es el resumen final: sirve de referencia
+    para saber de qué se trata la nota antes de abrirla.
+    """
+    hasta = datetime.now()
+    desde = hasta - timedelta(days=dias)
+
+    def fila(it):
+        return {
+            "titulo": it.get("titulo", ""),
+            "fuente": it.get("fuente", ""),
+            "fecha": it["fecha"].strftime("%Y-%m-%d"),
+            "url": it.get("url", ""),
+            "tipo": it.get("tipo", "prensa"),
+            "nivel": nivel_de(it),
+            "etiqueta_nivel": ETIQUETA_NIVEL.get(nivel_de(it), ""),
+            "relevancia": it.get("relevancia", 0),
+            "categoria": it.get("categoria", "Otros"),
+            "resumen_previo": it.get("resumen", ""),
+            "extracto": (it.get("extracto", "") or "")[:600],
+        }
+
+    datos = {
+        "generado": hasta.strftime("%Y-%m-%dT%H:%M"),
+        "periodo": {"desde": desde.strftime("%Y-%m-%d"),
+                    "hasta": hasta.strftime("%Y-%m-%d")},
+        "orden_categorias": CATEGORIAS,
+        "seleccion": [fila(i) for i in items],
+        "menciones": [fila(i) for i in menciones],
+    }
+
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(datos, f, ensure_ascii=False, indent=2)
+
+    return len(datos["seleccion"]), len(datos["menciones"])
+
+
 def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
     """
     Imprime dónde se angosta el embudo, por tipo de fuente.
@@ -1273,12 +1319,21 @@ def main():
     seleccion, menciones = clasificar(nuevos, cliente)
     print(f"      {len(seleccion)} destacados · {len(menciones)} menciones")
 
-    print("\n[7/7] Generando informe...")
+    print("\n[7/7] Escribiendo la selección...")
     sello = datetime.now().strftime("%Y-%m-%d")
     sufijo = "_repaso" if args.rehacer else ""
-    ruta_pdf = os.path.join(
-        CARPETA_SALIDA, f"xenotrasplantes_{sello}{sufijo}.pdf")
-    generar_pdf(seleccion, menciones, ruta_pdf)
+    ruta_json = os.path.join(
+        CARPETA_SALIDA, f"seleccion_{sello}{sufijo}.json")
+    n_sel, n_men = exportar_seleccion(
+        seleccion, menciones, ruta_json, VENTANA_DIAS)
+    print(f"      {n_sel} destacados y {n_men} menciones a revisar")
+
+    # El PDF automático quedó reemplazado por el informe que se arma
+    # después leyendo las notas. Si alguna vez querés el PDF viejo de
+    # respaldo, descomentá estas dos líneas:
+    # ruta_pdf = os.path.join(
+    #     CARPETA_SALIDA, f"xenotrasplantes_{sello}{sufijo}.pdf")
+    # generar_pdf(seleccion, menciones, ruta_pdf)
 
     if not args.rehacer:
         # Marcamos como vistos TODOS los nuevos, incluso el ruido: así
@@ -1293,8 +1348,9 @@ def main():
 
     resumen_embudo(crudos, unicos, nuevos, seleccion, menciones)
 
-    print(f"\nInforme:  {ruta_pdf}")
-    print(f"Archivo:  {ruta_csv}  ({total} ítems acumulados)\n")
+    print(f"\nSelección: {ruta_json}")
+    print(f"Archivo:   {ruta_csv}  ({total} ítems acumulados)")
+    print("\nSiguiente paso: abrí Cowork en esta carpeta y pedí el informe.\n")
 
 
 if __name__ == "__main__":
