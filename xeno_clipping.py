@@ -54,6 +54,14 @@ from reportlab.platypus import (
 # Cuántos días hacia atrás mirar. 7 = una semana.
 VENTANA_DIAS = 7
 
+# --- Tramos de búsqueda -------------------------------------------------------
+# Google News devuelve un tope de resultados por consulta. Si se le pide un mes
+# entero, ese tope se llena con lo más reciente y lo anterior se pierde. Por eso
+# las ventanas largas se parten en tramos de esta cantidad de días, y cada tramo
+# es una consulta propia con su propio tope.
+# Poner en 0 para volver al comportamiento anterior (una sola consulta).
+TRAMO_DIAS = 7
+
 # --- Dónde se guardan las cosas ----------------------------------------------
 # Por defecto, una subcarpeta "salida" al lado del script. Así el mismo
 # archivo funciona en tu PC y en un servidor, sin tocar nada.
@@ -264,6 +272,14 @@ SITIOS_PRIORITARIOS = [
     "prnewswire.com",
 ]
 
+# Las búsquedas por sitio están APAGADAS por defecto. Motivo: Google ignora
+# con frecuencia el grupo de términos en una consulta site:, y devuelve las
+# noticias generales del medio. En una corrida de 30 días dieron 70
+# resultados fuera de tema y casi ninguno útil: gastan presupuesto de
+# consultas sin aportar. El presupuesto se usa mejor en los tramos (ver
+# TRAMO_DIAS). Poner en True si alguna vez Google cambia de comportamiento.
+INCLUIR_BUSQUEDAS_SITIOS = False
+
 # Términos que se combinan con cada sitio. Van en una sola consulta para no
 # multiplicar el número de búsquedas.
 TERMINOS_SITIOS = ('xenotransplantation OR xenotransplant OR "pig kidney" '
@@ -310,8 +326,10 @@ MEDIOS_EXCLUIDOS = [
 
 # --- Umbral de relevancia ----------------------------------------------------
 # Claude puntúa cada nota de 1 a 5. Se incluyen las que superan este número.
-# 3 = razonablemente inclusivo. Subilo a 4 si te llega demasiado ruido.
-UMBRAL_RELEVANCIA = 3
+# 2 = todo lo que no sea ruido entra al informe como artículo. El informe ya no
+# tiene sección de menciones breves: cada ítem se lee y se resume a mano, así
+# que el umbral sólo separa material de ruido.
+UMBRAL_RELEVANCIA = 2
 
 # --- Categorías del informe --------------------------------------------------
 # El orden acá es el orden en que aparecen las secciones en el PDF.
@@ -327,9 +345,10 @@ CATEGORIAS = [
     "Otros",
 ]
 
-# Los ítems que Claude puntúa en 2 no se descartan: van al final del informe
-# como una lista de una línea, sin resumen. Así nada queda invisible.
-INCLUIR_MENCIONES_BREVES = True
+# Sección de menciones breves: desactivada. Antes los ítems de puntaje 2 iban
+# al final del informe como lista sin resumen; ahora entran como artículos
+# normales (ver UMBRAL_RELEVANCIA) y se leen igual que el resto.
+INCLUIR_MENCIONES_BREVES = False
 
 
 # ==============================================================================
@@ -416,11 +435,17 @@ NAVEGADOR = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
              "Chrome/125.0.0.0 Safari/537.36")
 
 
-def url_google_news(consulta, idioma):
+def url_google_news(consulta, idioma, tramo=None):
     """Arma la URL del feed RSS de Google News para una búsqueda."""
     # Google News acota mejor por su propio operador when: que filtrando
     # después por fecha del lado nuestro.
-    q = urllib.parse.quote(f"{consulta} when:{VENTANA_DIAS}d")
+    if tramo:
+        desde, hasta = tramo
+        filtro = f"after:{desde.date().isoformat()} before:{hasta.date().isoformat()}"
+    else:
+        filtro = f"when:{VENTANA_DIAS}d"
+
+    q = urllib.parse.quote(f"{consulta} {filtro}")
     if idioma == "es":
         return (f"https://news.google.com/rss/search?q={q}"
                 f"&hl=es-419&gl=AR&ceid=AR:es-419")
@@ -428,27 +453,69 @@ def url_google_news(consulta, idioma):
             f"&hl=en-US&gl=US&ceid=US:en")
 
 
+def tramos_de_ventana():
+    """
+    Parte la ventana en tramos de TRAMO_DIAS.
+
+    Google News devuelve un tope de resultados por consulta, y con ventanas
+    largas ese tope se llena con lo más reciente y el resto se pierde. Cuatro
+    consultas de una semana traen bastante más que una sola de un mes, porque
+    cada una tiene su propio tope.
+
+    Con ventanas cortas no hace falta: devuelve [None] y se usa when:Nd.
+    """
+    if not TRAMO_DIAS or VENTANA_DIAS <= TRAMO_DIAS:
+        return [None]
+
+    ahora = datetime.now(timezone.utc)
+    tramos = []
+    fin = ahora + timedelta(days=1)      # margen: before: es exclusivo
+    restantes = VENTANA_DIAS
+    while restantes > 0:
+        paso = min(TRAMO_DIAS, restantes)
+        inicio = fin - timedelta(days=paso + 1)
+        tramos.append((inicio, fin))
+        fin = inicio + timedelta(days=1)
+        restantes -= paso
+    return tramos
+
+
 def recolectar_google_news():
     """Recorre todas las búsquedas y devuelve una lista plana de noticias."""
     corte = datetime.now(timezone.utc) - timedelta(days=VENTANA_DIAS)
     resultados = []
 
-    trabajos = ([(c, "es") for c in BUSQUEDAS_ES] +
-                [(c, "en") for c in BUSQUEDAS_EN] +
-                [(c, "en") for c in BUSQUEDAS_ACTORES] +
-                [(f"site:{d} ({TERMINOS_SITIOS})", "en")
-                 for d in SITIOS_PRIORITARIOS])
+    trabajos = ([(c, "es", False) for c in BUSQUEDAS_ES] +
+                [(c, "en", False) for c in BUSQUEDAS_EN] +
+                [(c, "en", False) for c in BUSQUEDAS_ACTORES])
 
-    for consulta, idioma in trabajos:
-        url = url_google_news(consulta, idioma)
-        try:
-            feed = feedparser.parse(url, agent=NAVEGADOR)
-        except Exception as e:
-            print(f"  {consulta[:44]:<46} ERROR: {e}")
-            continue
+    if INCLUIR_BUSQUEDAS_SITIOS:
+        trabajos += [(f"site:{d} ({TERMINOS_SITIOS})", "en", True)
+                     for d in SITIOS_PRIORITARIOS]
 
+    tramos = tramos_de_ventana()
+    if len(tramos) > 1:
+        print(f"  (ventana partida en {len(tramos)} tramos de "
+              f"{TRAMO_DIAS} días)")
+
+    descartados_tema = 0
+
+    for consulta, idioma, filtrar in trabajos:
         antes = len(resultados)
-        for entrada in feed.entries:
+        fuera = 0
+        entradas = []
+        for tramo in tramos:
+            url = url_google_news(consulta, idioma, tramo)
+            try:
+                feed = feedparser.parse(url, agent=NAVEGADOR)
+            except Exception as e:
+                print(f"  {consulta[:44]:<46} ERROR: {e}")
+                continue
+            entradas.extend(feed.entries)
+            if len(tramos) > 1:
+                time.sleep(0.4)      # no atropellar a Google
+
+        for entrada in entradas:
             fecha = None
             if getattr(entrada, "published_parsed", None):
                 fecha = datetime(*entrada.published_parsed[:6],
@@ -463,17 +530,32 @@ def recolectar_google_news():
                 m = re.search(r"-\s+([^-]{2,40})$", entrada.get("title", ""))
                 fuente = m.group(1).strip() if m else "Desconocido"
 
+            titulo = limpiar_titulo(entrada.get("title", ""), fuente)
+            extracto = limpiar_html(entrada.get("summary", ""))[:600]
+
+            # En las búsquedas site: Google ignora con frecuencia el grupo
+            # de términos y devuelve lo último publicado por el sitio, sea
+            # del tema o no. Por eso se vuelve a filtrar acá.
+            if filtrar:
+                texto = (titulo + " " + extracto).lower()
+                if not any(p in texto for p in FILTRO_FEEDS):
+                    fuera += 1
+                    continue
+
             resultados.append({
-                "titulo": limpiar_titulo(entrada.get("title", ""), fuente),
+                "titulo": titulo,
                 "fuente": fuente,
                 "url": entrada.get("link", ""),
                 "fecha": fecha,
-                "extracto": limpiar_html(entrada.get("summary", ""))[:600],
+                "extracto": extracto,
                 "tipo": "prensa",
             })
 
+        descartados_tema += fuera
         traidos = len(resultados) - antes
         aviso = "   <-- sin resultados" if traidos == 0 else ""
+        if fuera:
+            aviso = f"   ({fuera} fuera de tema)"
         # Las consultas por sitio son larguísimas; en el log va sólo el sitio.
         etiqueta = consulta
         if etiqueta.startswith("site:"):
@@ -481,6 +563,10 @@ def recolectar_google_news():
         print(f"  {etiqueta[:44]:<46}{traidos:>4}{aviso}")
 
         time.sleep(1.5)  # cortesía con el servidor de Google
+
+    if descartados_tema:
+        print(f"  ({descartados_tema} resultados de búsquedas por sitio "
+              f"descartados por no mencionar el tema)")
 
     return resultados
 
@@ -607,6 +693,36 @@ def _traer_json(url, cabeceras=None):
         return json.load(r)
 
 
+TIPOS_MENORES = [
+    "erratum", "errata", "correction", "corrigendum", "retraction",
+    "retracted", "comment", "editorial", "letter", "reply",
+    "author correction", "expression of concern",
+]
+
+
+def es_publicacion_menor(r):
+    """
+    True si el resultado de Europe PMC es una errata, corrección, comentario,
+    carta o retractación en lugar de un trabajo propiamente dicho.
+
+    Se chequea por dos vías porque ninguna es completa: el campo pubTypeList,
+    que a veces viene vacío, y el título, que en estos casos casi siempre
+    arranca con la palabra delatora.
+    """
+    tipos = (r.get("pubTypeList") or {}).get("pubType") or []
+    if isinstance(tipos, str):
+        tipos = [tipos]
+    for t in tipos:
+        if any(m in str(t).lower() for m in TIPOS_MENORES):
+            return True
+
+    titulo = (r.get("title") or "").lower().lstrip("[ ")
+    inicios = ("correction", "erratum", "corrigendum", "retraction",
+               "retracted", "comment on", "comment to", "author correction",
+               "expression of concern", "reply to", "response to")
+    return titulo.startswith(inicios)
+
+
 def recolectar_ciencia():
     """Papers y preprints vía Europe PMC (indexa PubMed + bioRxiv + medRxiv)."""
     if not INCLUIR_CIENCIA:
@@ -641,10 +757,20 @@ def recolectar_ciencia():
 
     salida = []
     vistos_ids = set()
+    descartados_tipo = 0
     for r in crudos:
         if r.get("id") in vistos_ids:
             continue
         vistos_ids.add(r.get("id"))
+
+        # Europe PMC devuelve erratas, correcciones, cartas al editor y
+        # retracciones con la misma jerarquía que un paper. Tienen DOI, así
+        # que entran marcadas como fuente primaria, pero no son noticia: el
+        # aviso de errata casi nunca dice qué corrige.
+        if es_publicacion_menor(r):
+            descartados_tipo += 1
+            continue
+
         es_preprint = r.get("source") == "PPR"
         pid = r.get("pmid") or r.get("id", "")
         if r.get("doi"):
@@ -670,6 +796,10 @@ def recolectar_ciencia():
             "extracto": limpiar_html(resumen) or r.get("authorString", "")[:300],
             "tipo": "preprint" if es_preprint else "paper",
         })
+
+    if descartados_tipo:
+        print(f"    {'erratas y comentarios':<24}{descartados_tipo:>4} "
+              f"descartados")
 
     return salida
 
@@ -894,15 +1024,24 @@ Para cada ítem devolvé:
 - "resumen": dos oraciones en español neutro, redactadas con tus propias
     palabras, que digan QUÉ pasó y POR QUÉ importa para alguien que sigue el
     campo. No copies frases del titular ni del extracto: parafraseá.
-    Si la relevancia es 1 o 2, devolvé una cadena vacía.
+    Si la relevancia es 1, devolvé una cadena vacía.
 
 Devolvé ÚNICAMENTE un array JSON. Sin explicaciones, sin markdown, sin ```."""
 
 
 def clasificar(items, cliente):
-    """Manda los ítems a Claude en tandas y devuelve los que pasan el umbral."""
+    """
+    Manda los ítems a Claude en tandas.
+
+    Devuelve tres listas: los que pasan el umbral, las menciones breves (hoy
+    desactivadas) y los DESCARTADOS. Los descartados se devuelven en lugar de
+    perderse porque el criterio de ruido lo aplica un modelo leyendo sólo el
+    titular y un extracto, que es justamente el error que el informe existe
+    para corregir. Si algo se clasificó mal, tiene que poder auditarse.
+    """
     aprobados = []
     menciones = []
+    descartados = []
     TANDA = 12
 
     for inicio in range(0, len(items), TANDA):
@@ -954,10 +1093,76 @@ def clasificar(items, cliente):
                 aprobados.append(item)
             elif puntaje == 2 and INCLUIR_MENCIONES_BREVES:
                 menciones.append(item)
+            else:
+                descartados.append(item)
 
         time.sleep(1)
 
-    return aprobados, menciones
+    return aprobados, menciones, descartados
+
+
+def marcar_desde_json(ruta):
+    """
+    Marca como vistos los ítems de un seleccion_*.json ya usado en un informe.
+
+    Se usa después de --sin-triaje: como ahí no se marca nada al recolectar
+    (el triaje todavía no había ocurrido), este paso cierra el círculo cuando
+    el informe ya está hecho. Sin esto, la semana siguiente volvería a traer
+    todo lo de esta.
+
+    La huella es el título normalizado, igual que en la recolección, así que
+    alcanza con el JSON: no hace falta volver a recolectar.
+    """
+    if not os.path.exists(ruta):
+        print(f"No encuentro el archivo: {ruta}")
+        return
+
+    with open(ruta, encoding="utf-8") as f:
+        datos = json.load(f)
+
+    filas = datos.get("seleccion", []) + datos.get("menciones", [])
+    filas += datos.get("descartados", [])
+    if not filas:
+        print("El archivo no tiene ítems.")
+        return
+
+    con = abrir_base()
+    marcados = 0
+    for fila in filas:
+        clave = normalizar(fila.get("titulo", ""))
+        if not clave:
+            continue
+        con.execute(
+            "INSERT OR IGNORE INTO vistos VALUES (?, ?, ?, ?, ?)",
+            (clave[:120], fila.get("titulo", ""), fila.get("fuente", ""),
+             fila.get("url", ""), fila.get("fecha", "")),
+        )
+        marcados += 1
+    con.commit()
+    con.close()
+    print(f"{marcados} ítems marcados como vistos desde {ruta}")
+
+
+def sin_clasificar(items):
+    """
+    Modo sin API: devuelve todo el material recolectado tal cual, sin puntuar
+    ni clasificar.
+
+    El triaje pasa a hacerlo quien arma el informe, que además puede abrir la
+    nota antes de decidir —el triaje automático puntúa leyendo sólo el titular
+    y un extracto, así que este modo no es un downgrade: mueve la decisión a
+    donde hay más información.
+
+    La categoría queda vacía a propósito: se asigna al escribir el informe.
+    """
+    aprobados = []
+    for it in items:
+        item = dict(it)
+        item["relevancia"] = 0          # 0 = sin puntuar
+        item["categoria"] = "Sin clasificar"
+        item["resumen"] = ""
+        aprobados.append(item)
+    return aprobados, [], []
 
 
 # --------------------------------------------------------------------- PDF
@@ -1108,7 +1313,7 @@ def exportar_archivo_historico(con, ruta):
     return len(filas)
 
 
-def exportar_seleccion(items, menciones, ruta, dias):
+def exportar_seleccion(items, menciones, descartados, ruta, dias):
     """
     Vuelca lo que pasó el triage a un JSON, para que la capa editorial
     (la skill de Cowork) lo tome desde ahí.
@@ -1120,6 +1325,11 @@ def exportar_seleccion(items, menciones, ruta, dias):
     El campo "resumen_previo" es el resumen automático hecho a partir del
     titular y el extracto. NO es el resumen final: sirve de referencia
     para saber de qué se trata la nota antes de abrirla.
+
+    La lista "descartados" guarda lo que el triaje consideró ruido
+    (relevancia 1). No va al informe, pero queda registrado para poder
+    auditarlo: el triaje puntúa leyendo sólo el titular y un extracto, así
+    que a veces se equivoca, y sin este registro el error sería invisible.
     """
     hasta = datetime.now()
     desde = hasta - timedelta(days=dias)
@@ -1146,12 +1356,14 @@ def exportar_seleccion(items, menciones, ruta, dias):
         "orden_categorias": CATEGORIAS,
         "seleccion": [fila(i) for i in items],
         "menciones": [fila(i) for i in menciones],
+        "descartados": [fila(i) for i in descartados],
     }
 
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(datos, f, ensure_ascii=False, indent=2)
 
-    return len(datos["seleccion"]), len(datos["menciones"])
+    return (len(datos["seleccion"]), len(datos["menciones"]),
+            len(datos["descartados"]))
 
 
 def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
@@ -1206,14 +1418,18 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
         n3 = sum(1 for i in prensa_informe if nivel_de(i) == 3)
         if n3 > len(prensa_informe) * 0.5:
             print("\n  → Más de la mitad de la prensa viene de reescritura.")
-            print("    Revisá si los feeds directos respondieron (etapa 2).")
+            print("    Revisá esos ítems antes de mandarlos: es de donde")
+            print("    salen los falsos hitos (notas viejas recirculadas).")
 
     if prensa_cruda:
         n2_crudo = sum(1 for i in prensa_cruda if nivel_de(i) == 2)
         if n2_crudo == 0:
             print("\n  → No entró NADA de reporteo original (nivel 2).")
-            print("    Mirá arriba las líneas 'sitio:': si están en cero,")
-            print("    Google no responde a las búsquedas por sitio.")
+            print("    Es lo esperable en ventanas largas: los RSS de los")
+            print("    medios grandes sólo guardan sus últimas notas y no")
+            print("    llegan a cubrir la ventana. La prensa de calidad hay")
+            print("    que buscarla en el barrido expandido, al armar el")
+            print("    informe.")
 
     print("\nDónde se fue el material:")
     print(f"  {perdidos_dup:>5} descartados por duplicado "
@@ -1221,7 +1437,10 @@ def resumen_embudo(crudos, unicos, nuevos, informe, menciones):
     print(f"  {perdidos_vistos:>5} descartados por ya vistos "
           f"(salieron en informes anteriores)")
     print(f"  {perdidos_ruido:>5} descartados por relevancia 1 "
-          f"(Claude los consideró ruido)")
+          f"(el triaje los consideró ruido)")
+    if perdidos_ruido:
+        print("        quedan listados en el JSON, campo 'descartados',")
+        print("        por si el triaje se equivocó")
 
     if perdidos_vistos > len(nuevos) * 2 and perdidos_vistos > 10:
         print("\n  → La mayor parte se filtró por 'ya vistos'. Es el sistema")
@@ -1258,6 +1477,15 @@ def main():
         description="Clipping de xenotrasplantes")
     ap.add_argument("--dias", type=int, default=VENTANA_DIAS,
                     help="cuántos días hacia atrás mirar (por defecto 7)")
+    ap.add_argument("--marcar-vistos", metavar="JSON", dest="marcar_vistos",
+                    help="no recolecta: toma un seleccion_*.json ya usado en "
+                         "un informe y marca sus ítems como vistos, para que "
+                         "no vuelvan a aparecer. Se corre al terminar el "
+                         "informe cuando se usó --sin-triaje")
+    ap.add_argument("--sin-triaje", action="store_true", dest="sin_triaje",
+                    help="no usa la API: exporta TODO lo recolectado sin "
+                         "puntuar ni clasificar, para que el triaje lo haga "
+                         "la sesión de Cowork al armar el informe")
     ap.add_argument("--rehacer", action="store_true",
                     help="ignora la base de vistos y NO la actualiza; "
                          "sirve para ver el panorama completo de un período "
@@ -1265,12 +1493,19 @@ def main():
     args = ap.parse_args()
     VENTANA_DIAS = args.dias
 
-    if not API_KEY:
-        print("ERROR: falta la clave de la API.")
-        print("Configurá la variable de entorno ANTHROPIC_API_KEY.")
+    if args.marcar_vistos:
+        marcar_desde_json(args.marcar_vistos)
         return
 
-    cliente = Anthropic(api_key=API_KEY)
+    # El triaje con la API es opcional. Sin clave, el script recolecta igual
+    # y deja el material sin puntuar para que lo triee quien arma el informe.
+    sin_triaje = args.sin_triaje or not API_KEY
+    if sin_triaje and not args.sin_triaje:
+        print("\nAviso: no hay ANTHROPIC_API_KEY en el entorno.")
+        print("Sigo sin triaje automático: voy a recolectar todo y dejarlo")
+        print("sin puntuar, para que el triaje lo haga quien arme el informe.")
+
+    cliente = None if sin_triaje else Anthropic(api_key=API_KEY)
     con = abrir_base()
 
     modo = " (modo repaso: se ignora la base de vistos)" if args.rehacer else ""
@@ -1315,18 +1550,27 @@ def main():
         con.close()
         return
 
-    print("\n[6/7] Clasificando y resumiendo...")
-    seleccion, menciones = clasificar(nuevos, cliente)
-    print(f"      {len(seleccion)} destacados · {len(menciones)} menciones")
+    if sin_triaje:
+        print("\n[6/7] Sin triaje automático: paso todo al informe.")
+        seleccion, menciones, descartados = sin_clasificar(nuevos)
+        print(f"      {len(seleccion)} ítems sin puntuar, para trienar al "
+              f"armar el informe")
+    else:
+        print("\n[6/7] Clasificando y resumiendo...")
+        seleccion, menciones, descartados = clasificar(nuevos, cliente)
+        print(f"      {len(seleccion)} para el informe · "
+              f"{len(descartados)} descartados por ruido")
 
     print("\n[7/7] Escribiendo la selección...")
     sello = datetime.now().strftime("%Y-%m-%d")
     sufijo = "_repaso" if args.rehacer else ""
     ruta_json = os.path.join(
         CARPETA_SALIDA, f"seleccion_{sello}{sufijo}.json")
-    n_sel, n_men = exportar_seleccion(
-        seleccion, menciones, ruta_json, VENTANA_DIAS)
-    print(f"      {n_sel} destacados y {n_men} menciones a revisar")
+    n_sel, n_men, n_desc = exportar_seleccion(
+        seleccion, menciones, descartados, ruta_json, VENTANA_DIAS)
+    print(f"      {n_sel} ítems a leer"
+          + (f" · {n_men} menciones" if n_men else "")
+          + f" · {n_desc} descartados quedaron registrados")
 
     # El PDF automático quedó reemplazado por el informe que se arma
     # después leyendo las notas. Si alguna vez querés el PDF viejo de
@@ -1335,7 +1579,15 @@ def main():
     #     CARPETA_SALIDA, f"xenotrasplantes_{sello}{sufijo}.pdf")
     # generar_pdf(seleccion, menciones, ruta_pdf)
 
-    if not args.rehacer:
+    if args.rehacer:
+        pass
+    elif sin_triaje:
+        # En modo sin triaje NO se marca nada como visto. El triaje lo hace
+        # después quien arma el informe, y si acá marcáramos todo, lo que
+        # quede fuera de esta corrida se perdería sin que nadie lo haya
+        # mirado. Se marca al final, desde la skill, con --marcar-vistos.
+        print("\n      (no se marcó nada como visto: el triaje es posterior)")
+    else:
         # Marcamos como vistos TODOS los nuevos, incluso el ruido: así
         # tampoco vuelve a aparecer la semana que viene.
         for i in nuevos:
