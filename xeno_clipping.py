@@ -55,12 +55,15 @@ from reportlab.platypus import (
 VENTANA_DIAS = 7
 
 # --- Tramos de búsqueda -------------------------------------------------------
-# Google News devuelve un tope de resultados por consulta. Si se le pide un mes
-# entero, ese tope se llena con lo más reciente y lo anterior se pierde. Por eso
-# las ventanas largas se parten en tramos de esta cantidad de días, y cada tramo
-# es una consulta propia con su propio tope.
-# Poner en 0 para volver al comportamiento anterior (una sola consulta).
-TRAMO_DIAS = 7
+# APAGADO (0). Se probó partir las ventanas largas en tramos semanales, con la
+# idea de que Google News trunca los resultados y que así entraría más prensa.
+# La prueba del 2/09/2026 sobre 30 días mostró que no: los resultados en bruto
+# subieron apenas (40 → 44) y casi todos eran la misma nota repetida en varios
+# tramos, así que los duplicados pasaron de 11 a 19 y la prensa ÚNICA terminó
+# más baja que antes (30 → 25). Encima duplicó el tiempo de corrida.
+# El techo no es el truncado: es que no hay más prensa indexada del tema.
+# Se deja el mecanismo por si alguna vez sirve para otra fuente.
+TRAMO_DIAS = 0
 
 # --- Dónde se guardan las cosas ----------------------------------------------
 # Por defecto, una subcarpeta "salida" al lado del script. Así el mismo
