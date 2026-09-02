@@ -5,6 +5,16 @@ on:
     # Lunes 11:00 UTC = 7:00 en Chile (horario de invierno).
     - cron: "0 11 * * 1"
   workflow_dispatch:
+    inputs:
+      dias:
+        description: "Cuántos días hacia atrás mirar"
+        required: false
+        default: "7"
+      rehacer:
+        description: "Modo repaso: ignora la base de vistos y NO la actualiza (para pruebas)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -28,7 +38,17 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PATENTSVIEW_API_KEY: ${{ secrets.PATENTSVIEW_API_KEY }}
-        run: python xeno_clipping.py
+          # En la corrida automática de los lunes estas variables vienen
+          # vacías, y el script usa sus valores por defecto (7 días, sin
+          # repaso). Sólo se llenan cuando se dispara a mano desde la web.
+          DIAS: ${{ inputs.dias }}
+          REHACER: ${{ inputs.rehacer }}
+        run: |
+          ARGS=""
+          if [ -n "$DIAS" ]; then ARGS="--dias $DIAS"; fi
+          if [ "$REHACER" = "true" ]; then ARGS="$ARGS --rehacer"; fi
+          echo "Corriendo: python xeno_clipping.py $ARGS"
+          python xeno_clipping.py $ARGS
 
       - name: Guardar el informe y la memoria en el repositorio
         run: |
