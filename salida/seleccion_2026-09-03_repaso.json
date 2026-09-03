@@ -1,0 +1,21 @@
+{
+  "generado": "2026-09-03T22:37",
+  "periodo": {
+    "desde": "2026-08-04",
+    "hasta": "2026-09-03"
+  },
+  "orden_categorias": [
+    "Hitos clínicos",
+    "Ciencia y preprints",
+    "Ensayos clínicos",
+    "Regulatorio",
+    "Industria y financiamiento",
+    "Patentes",
+    "Bioética y opinión pública",
+    "Región (América Latina)",
+    "Otros"
+  ],
+  "seleccion": [],
+  "menciones": [],
+  "descartados": []
+}
