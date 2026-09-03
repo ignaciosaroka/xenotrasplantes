@@ -1,7 +1,7 @@
 {
-  "generado": "2026-09-03T22:45",
+  "generado": "2026-09-03T23:27",
   "periodo": {
-    "desde": "2026-08-04",
+    "desde": "2026-08-19",
     "hasta": "2026-09-03"
   },
   "orden_categorias": [
@@ -17,8 +17,60 @@
   ],
   "seleccion": [
     {
+      "titulo": "Boston doctors report first pig-to-human transplant bridge",
+      "fuente": "WCVB",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE04TnJyc19zbkJfWDZJdlhUSE1GY0w4bnBkTnVCRS14QzBTTXZSSC1CbmFFazJuM25PTjM5QlpKUl8yQlRvV0RjbHdUekoyd1BlRW9wLXhtWjNCcTVWOHdmUFh5VG9LcjFRVlFfaEF4bU1QNEl4N1BsbVZjeDNYTms?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 3,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Se reporta el primer trasplante de riñón de cerdo modificado genéticamente utilizado como puente temporal en un paciente humano. El caso representa un hito experimental pero la cobertura de nivel 3 limita la certeza sobre detalles clínicos y contexto institucional.",
+      "extracto": "Boston doctors report first pig-to-human transplant bridge WCVB"
+    },
+    {
+      "titulo": "Patient lived with world's first pig kidney transplant for nine months before getting human organ",
+      "fuente": "Radio Royal",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOTEN5dHd4Yndzb2pLV1otUDFzQ3YxTEdTdWtFZTFjU3RlNDJjNGdvU2FHQ003TzEwbUZ4R0R2eV9yQ3Q4ZG5vM01Mb1Jxb1o0MlUyTE9XcGozLUdVemJGT002NGhnckNyeGwtNjZHY09Db3QwLUI3UFFpanF0ejgwYWtSTXhiaF9ZbVZ6M3JlTzV0TFAzRTEzSngwczRWcnBjd2UzM1htTXQ0bUZiN0Nzbzd4cTdiMUFraHQ0NEdScnVEU2pwT1pxX3U3dHVQeG8?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 3,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Un paciente logró sobrevivir nueve meses con un riñón porcino injertado antes de recibir un órgano humano, evitando diálisis en ese período. El evento marca un hito de supervivencia funcional pero la fuente es de reescritura, limitando la validación de detalles.",
+      "extracto": "Patient lived with world's first pig kidney transplant for nine months before getting human organ Radio Royal"
+    },
+    {
+      "titulo": "Un paciente prescinde 9 meses de la diálisis con un riñón de cerdo hasta lograr uno humano",
+      "fuente": "Infobae",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxONkwwTlFkOEpadnZyQWZraGQ3XzNnYl90WkdRUW9YUUc2bExuNFZfZEhPX1Q1UFA0QkdEY29EeklIY1RyTlJwaTJVVWxVU3BPZUNBM0NLYjMyVS1iRUludmRleFR0YlF4dF9kYkVkRkpxM2YtRjczb2hQN2VNMGpzTEFSS3lEYTM0ZU9yMkd2TFhyWWE0TkNTNlVsNGdRQW1DQU1DNXlJYTZtX2pYemMyYzdRUDVOMURvSjUzM25aTnJqXzJoOFduSU1UTXBLQWlyTGRNNWM5SWZSNzTSAfYBQVVfeXFMUEpLWVlfV1poYzd4c0thZDdlLVNtRnpPbFFlemN6RlA2LUNMUFVhR29IY2NGWXdBUzE1TWMzTS05b0k2WEk1aTZOckMzcldUa1hHLXAwQ2tqbVhURjlpbmxTZ1c5TExXWHN1bkFJZzRvbTdMSFFGMUtqMFZNdW14NmJPQUI1Q2NrMU9jZS1NQXdWWk82dktJTWRUUDJ0cGYwMnNCa0xscld5YTZ2OXJpQ1NkSk5IaXRoaDNVbFR5dDJuRGJCaTdYUFhVSVhUd3hNZVRtTTIxblI2NExsNTd3ZWIyNGhVRC01dUItRUQtYklzUXJVYmhB?oc=5",
+      "tipo": "prensa",
+      "nivel": 2,
+      "etiqueta_nivel": "reporteo original",
+      "relevancia": 4,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Un paciente mantuvo función renal de cerdo modificado durante nueve meses sin necesidad de diálisis hasta recibir un riñón humano. Reportaje de medio de verificación original que documenta un hito clínico significativo en la historia del xenotrasplante renal.",
+      "extracto": "Un paciente prescinde 9 meses de la diálisis con un riñón de cerdo hasta lograr uno humano Infobae"
+    },
+    {
+      "titulo": "Man given genetically modified pig kidney for nine months in world first",
+      "fuente": "Times Series",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPdDQyNGx2TVJwdjZxaEhWTUppa2JIdnlxUFdfZkV1VDMwZXNVUDVRR3BkWVlDaXJ0YktOeW5ubWo2dUg2aF9tSU0xdkpfTzhDd19BSWI5QXdvYWktZHdpRTg3RDUyT0d0OHdXRkVpbnJ3Zk8yZmZ2S2h5aHlGZW1GQ25FMVQ3TUtKWF9waHNpei1abkNrT1pXeG1oaWFSOC1VVlgtT2NZVkFGRThlSHZlTUJ0dUxxWDFRNjh6VA?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 3,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Se reporta el primer caso mundial de trasplante renal porcino con permanencia de nueve meses en un paciente antes de la transición a órgano humano. Fuente de reescritura que confirma el evento pero sin acceso a datos clínicos primarios.",
+      "extracto": "Man given genetically modified pig kidney for nine months in world first Times Series"
+    },
+    {
       "titulo": "Pig-Kidney Transplant Bridges to Human Kidney Success",
-      "fuente": "miragenews.com",
+      "fuente": "Mirage News",
       "fecha": "2026-09-03",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxON0JLYmFKQTdoa2Z3WWZJc1ZkVnJKOU9xR2RXdGhzX2p1VFh0a2ZlQ3l1MXJRa2V4OUJSOWxJTlN1SmhJd1RxX1plUXBkTENxcm44YmlpQkVBbFdhbU1va2xqaVhvcGpvZ2RfQnhPVUF0SDVXM2VRUGVLZW9CaGRINUhxdTBheW1j?oc=5",
       "tipo": "prensa",
@@ -26,8 +78,8 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un xenotrasplante de riñón porcino funcionó como puente hacia un trasplante renal humano en un paciente. El resultado demuestra la viabilidad de los órganos porcinos modificados como solución temporal para personas en espera de órganos humanos.",
-      "extracto": "Pig-Kidney Transplant Bridges to Human Kidney Success miragenews.com"
+      "resumen_previo": "Se describe un caso de xenotrasplante renal porcino que sirvió como puente exitoso hacia un trasplante renal humano. Contenido de reescritura sin aporte de información primaria más allá de otros reportes del mismo evento.",
+      "extracto": "Pig-Kidney Transplant Bridges to Human Kidney Success Mirage News"
     },
     {
       "titulo": "Recipients of gene-edited pig kidneys successfully receive human organs",
@@ -39,7 +91,7 @@
       "etiqueta_nivel": "reporteo original",
       "relevancia": 4,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Pacientes trasplantados con riñones porcinos editados genéticamente lograron posteriormente recibir órganos humanos compatibles. El hito marca la primera aplicación clínica exitosa del xenotrasplante como estrategia de puente temporal hacia trasplantes de origen humano.",
+      "resumen_previo": "Múltiples receptores de riñones porcinos modificados genéticamente lograron la transición exitosa a órganos humanos tras períodos de funcionamiento del xenotrasplante. Reportaje original de medio especializado que amplía la evidencia clínica más allá de casos aislados.",
       "extracto": "Recipients of gene-edited pig kidneys successfully receive human organs STAT"
     },
     {
@@ -52,25 +104,12 @@
       "etiqueta_nivel": "reporteo original",
       "relevancia": 4,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un riñón porcino modificado funcionó en un cuerpo humano durante 271 días, estableciendo un nuevo récord de supervivencia del xenotrasplante renal. El logro sugiere que estos órganos pueden ser viables como soluciones a largo plazo en el futuro.",
+      "resumen_previo": "Un riñón porcino modificado mantuvo función en un paciente humano durante 271 días, demostrando durabilidad significativa del xenotrasplante. Reportaje de medio de investigación que analiza las implicaciones de este resultado para el futuro de la medicina de trasplantes.",
       "extracto": "Pig kidney works in human body for 271 days - is this the future of organ transplants? BBC"
     },
     {
-      "titulo": "Un paciente prescinde 9 meses de la diálisis con un riñón de cerdo hasta lograr uno humano",
-      "fuente": "HolaNews",
-      "fecha": "2026-09-03",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOd0p0WW43aDFvRlZrZVd2MzFXZS1GQjlfNFY5RGladm5kbTdidVlSODNPd1Yzc1hkQkRXd0VJZGUxRUFkcElqMUFqQW9TWmNZUjY2UnpCOVUtM2k4V0JxcHVtOVFfYk5WV1ZicG9CbzhBYWVQSWZYSEZlT1A0RWNrTkpqME5kWG1iM1IxSFRzWm1iM3F0S1dSbDZXc1Q0N3RPNkMxd0ZST1dCN0ZWRzZLUkdR?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 3,
-      "categoria": "Hitos clínicos",
-      "resumen_previo": "Un paciente evitó nueve meses de diálisis tras recibir un riñón de cerdo modificado, el cual funcionó hasta que consiguió un órgano humano. El caso demuestra el valor clínico del xenotrasplante como apoyo temporal para pacientes en insuficiencia renal terminal.",
-      "extracto": "Un paciente prescinde 9 meses de la diálisis con un riñón de cerdo hasta lograr uno humano HolaNews"
-    },
-    {
       "titulo": "I'm the first person in the world to have survived a PIG kidney transplant...18 months later I'm healthier than I ever thought I could be",
-      "fuente": "Daily Mail",
+      "fuente": "dailymail.com",
       "fecha": "2026-09-03",
       "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNSEh6V3dRSWhTQjRRUnVfajJ4ZTI1MVlmOU43X2E4UkgxTUNiZHFsTHJxbXdBV0p6U2ltU3NYSU0xUURMYV92S3JYdjRBNXpoNU0wZjVxVi1UaV9temRWM0RrcUZBYUtmcUowZnEyMjhGTFpQbWFVbDhmMEFaY0VJNHIySU5SeHN6NVNtWHNTUDVpZ1ZYZnRNTHZOS1hZSlkxQk42eDV6SnMtRGlTeDF1S0ZTOEM1dlphWk94STNybi1UZnJHeTFvTVpfX2NMY1dKUTZqTFVLdVjSAd4BQVVfeXFMUFBvVW03WDZUMHBXY21Qc1hCRThTeWJaMkFLMkNFcUp1eUhUMm1mSHgxeExOUUN1aVpUNzU0UGlVTzVBLU1tTTlmeXdyVWYxcTdFSk5ENGR2QVZrU25pd2xqYmNnMUE3U2FLN0F0NFhuSVp6VlZLSGpyVzZOS3U5RTBiRjljUGs5RU01cDhyaTBLb09aZ3NtTjc1aTZHU1ZaZi1JVVp6azRsdXlpRlVqQnRuWnJoSEJ4Z3BQUGNzeU9RUXNfb0w4VUxkRVpFbDVmaWtNQ1JEMkE4OE11NC13?oc=5",
       "tipo": "prensa",
@@ -78,8 +117,8 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "El primer sobreviviente de un xenotrasplante renal porcino reporta haber mejorado sustancialmente su calidad de vida dieciocho meses después del procedimiento. El testimonio personal ilustra el impacto positivo en la experiencia del paciente tras esta intervención pionera.",
-      "extracto": "I'm the first person in the world to have survived a PIG kidney transplant...18 months later I'm healthier than I ever thought I could be Daily Mail"
+      "resumen_previo": "El primer paciente en sobrevivir a un trasplante renal porcino reporta mejoría sustancial en su salud dieciocho meses después del procedimiento. Testimonio de paciente de fuente de reescritura que proporciona perspectiva a largo plazo pero sin datos clínicos verificables.",
+      "extracto": "I'm the first person in the world to have survived a PIG kidney transplant...18 months later I'm healthier than I ever thought I could be dailymail.com"
     },
     {
       "titulo": "Pig kidney kept a man off dialysis for nine months in world first",
@@ -91,34 +130,21 @@
       "etiqueta_nivel": "reporteo original",
       "relevancia": 4,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un riñón porcino modificado mantuvo a un paciente fuera de diálisis durante nueve meses, un hito mundial en xenotrasplante renal. El logro valida la eficacia funcional de los órganos porcinos editados en humanos durante períodos clínicamente significativos.",
+      "resumen_previo": "Un riñón porcino permitió a un paciente prescindir de diálisis durante nueve meses en un hito mundial de xenotrasplante renal. Reportaje de medio científico de verificación original que documenta el resultado clínico con contexto de significación en el campo.",
       "extracto": "Pig kidney kept a man off dialysis for nine months in world first New Scientist"
     },
     {
-      "titulo": "Man able to live with genetically modified pig kidney for nine months in world first",
-      "fuente": "Newswav",
-      "fecha": "2026-09-03",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQRWJpNWQza1psSzRmYl8wTjNUR2JxSldBZVZ1Rl9kTldxU3prNThSRmhWM0VJaWZReEhCMjExQmFuRWJ6WHl2TS0tWHhHblhybkU5WGt3d3ZxSnJqcEhLNGMyRjdJaWlBUHM3YzdxQ2tlLTZ6VW9VRFFFQzkyYzBqRkxNcXYzdnNONHVFbFdVcldMUFU5OGg5VEk2ZnFKVVVuTmMySXRqWlhpNTZwTjBWMklna25Qb3M?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 3,
-      "categoria": "Hitos clínicos",
-      "resumen_previo": "Un hombre vivió con un riñón porcino modificado genéticamente durante nueve meses, en una primicia mundial documentada. El caso subraya la capacidad de estos órganos xenotrasplantados para mantener función renal prolongada en pacientes humanos.",
-      "extracto": "Man able to live with genetically modified pig kidney for nine months in world first Newswav"
-    },
-    {
       "titulo": "In a First, a Pig Kidney Kept a Patient Alive Until He Got a Human One",
-      "fuente": "The New York Times",
+      "fuente": "nytimes.com",
       "fecha": "2026-09-03",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1MVmZKYjFSbFpCclBrR21ud0RXeTlQanZKcjNFWXQyTWR5Y3FJZWItLVVDMFhtQXVLTFB1OEJjWmk2c2RjaTBob0V2QUpFeTJyVHoxUXBidVFRcUtMdlRaVEluUVlUbldMV3FWLUgyenFVMU9yem4tOE4yUU84QQ?oc=5",
       "tipo": "prensa",
       "nivel": 2,
       "etiqueta_nivel": "reporteo original",
-      "relevancia": 4,
+      "relevancia": 5,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un riñón de cerdo modificado mantuvo con vida a un paciente hasta que recibió un trasplante humano, en un procedimiento inédito. El resultado valida el modelo de xenotrasplante como puente temporal en insuficiencia renal terminal, reduciendo la dependencia de diálisis.",
-      "extracto": "In a First, a Pig Kidney Kept a Patient Alive Until He Got a Human One The New York Times"
+      "resumen_previo": "Un paciente logró sobrevivir con un riñón de cerdo modificado genéticamente durante nueve meses, funcionando como puente temporal hasta recibir un trasplante de riñón humano. Este es el primer caso documentado de xenotrasplante renal que mantiene viabilidad prolongada y permite la transición exitosa a un órgano de donante humano.",
+      "extracto": "In a First, a Pig Kidney Kept a Patient Alive Until He Got a Human One nytimes.com"
     },
     {
       "titulo": "Kidney Xenotransplantation Successful Stop-Gap Until Allotransplantation",
@@ -130,7 +156,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "La xenotrasplantación renal porcina demostró ser exitosa como solución transitoria hacia un trasplante alogénico humano. El hallazgo refuerza el rol de estos órganos modificados como herramienta clínica para aliviar la espera y las complicaciones de la diálisis.",
+      "resumen_previo": "Un medio especializado reporta sobre el xenotrasplante renal como solución de puente hacia trasplante humano. El contenido recicla información de una noticia de primer nivel sin agregar detalles adicionales.",
       "extracto": "Kidney Xenotransplantation Successful Stop-Gap Until Allotransplantation Inside Precision Medicine"
     },
     {
@@ -143,7 +169,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un xenotrasplante de riñón porcino funcionó como puente exitoso para un paciente con enfermedad renal en estadio terminal hasta obtener un trasplante humano. El resultado documenta la utilidad del procedimiento para cerrar la brecha temporal en disponibilidad de órganos.",
+      "resumen_previo": "Se reporta que un riñón de cerdo permitió mantener vivo a un paciente con enfermedad renal terminal hasta recibir un trasplante humano. La cobertura reescribe material ajeno sin aportes originales de investigación.",
       "extracto": "Pig kidney xenotransplant successfully bridges patient with end-stage kidney disease to human transplant Medical Xpress"
     },
     {
@@ -156,21 +182,8 @@
       "etiqueta_nivel": "reporteo original",
       "relevancia": 5,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un paciente mantuvo funcionando un riñón de cerdo genéticamente modificado durante nueve meses, estableciendo un nuevo récord de supervivencia con xenotrasplante renal, hasta que recibió un trasplante humano convencional. Este hito demuestra la viabilidad clínica prolongada de órganos porcinos modificados y abre perspectivas para pacientes en lista de espera.",
+      "resumen_previo": "Un paciente español sobrevivió nueve meses con un riñón de cerdo trasplantado antes de recibir exitosamente un trasplante de riñón humano. Este hito marca un récord en durabilidad y funcionalidad de xenotrasplante renal, demostrando viabilidad clínica.",
       "extracto": "Un hombre sobrevive nueve meses con un riñón de cerdo hasta recibir un trasplante humano con éxito EL PAÍS"
-    },
-    {
-      "titulo": "Genetically modified pig kidney keeps man alive for record nine months",
-      "fuente": "The Guardian",
-      "fecha": "2026-09-03",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOc1NwWTRLdzBDR2VIZUJzVjdLV29QWTZRd0VxWEx0eEFneTRGUXRqb2hCWXJnOGJTY2R5bTVEUXJORVlBbEdqNUFORjdmWU9LUFM0LXliTE42czFta1dOMV9FZUxPVUJzR0ZCRWNSRlBDSG9hSjBhT1pRWUhyLVZZWkdOYVhqTzFINmZNWXNPREpIU3FDdnhieTQ1bGRxUHNlLXhhNjduNTlsQUhaUzVpVEp6TzI?oc=5",
-      "tipo": "prensa",
-      "nivel": 2,
-      "etiqueta_nivel": "reporteo original",
-      "relevancia": 5,
-      "categoria": "Hitos clínicos",
-      "resumen_previo": "Un riñón porcino modificado genéticamente mantuvo al paciente vivo durante nueve meses, batiendo el récord anterior de supervivencia en xenotrasplante renal. Este resultado confirma la durabilidad clínica de la tecnología y su potencial como puente o solución para insuficiencia renal terminal.",
-      "extracto": "Genetically modified pig kidney keeps man alive for record nine months The Guardian"
     },
     {
       "titulo": "A Transplanted Pig Kidney Is Still Working After a Record-Setting 9 Months in a Patient",
@@ -182,8 +195,21 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un injerto renal porcino funcionó exitosamente en un paciente durante nueve meses consecutivos, superando los tiempos de supervivencia previos reportados. El logro subraya el avance técnico en xenotrasplantación como alternativa ante la escasez de órganos humanos.",
+      "resumen_previo": "Una publicación especializada destaca que el riñón de cerdo trasplantado funciona tras nueve meses de permanencia en el paciente. El contenido recapitula el hito sin proporcionar análisis o contexto adicional.",
       "extracto": "A Transplanted Pig Kidney Is Still Working After a Record-Setting 9 Months in a Patient WIRED"
+    },
+    {
+      "titulo": "Genetically modified pig kidney keeps man alive for record nine months",
+      "fuente": "The Guardian",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOc1NwWTRLdzBDR2VIZUJzVjdLV29QWTZRd0VxWEx0eEFneTRGUXRqb2hCWXJnOGJTY2R5bTVEUXJORVlBbEdqNUFORjdmWU9LUFM0LXliTE42czFta1dOMV9FZUxPVUJzR0ZCRWNSRlBDSG9hSjBhT1pRWUhyLVZZWkdOYVhqTzFINmZNWXNPREpIU3FDdnhieTQ1bGRxUHNlLXhhNjduNTlsQUhaUzVpVEp6TzI?oc=5",
+      "tipo": "prensa",
+      "nivel": 2,
+      "etiqueta_nivel": "reporteo original",
+      "relevancia": 5,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Un riñón modificado genéticamente de cerdo mantuvo vivo a un paciente durante un récord de nueve meses antes de su reemplazo por un órgano humano. El logro demuestra la viabilidad del xenotrasplante renal como estrategia temporal en insuficiencia renal terminal.",
+      "extracto": "Genetically modified pig kidney keeps man alive for record nine months The Guardian"
     },
     {
       "titulo": "Kidney disease patient survives 9mths with transplant PIG organ in world 1st",
@@ -195,8 +221,47 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Un paciente con enfermedad renal crónica sobrevivió nueve meses con un órgano porcino trasplantado, marcando un primer mundial en duración de supervivencia. El caso refuerza la maduración de la tecnología de xenotrasplantación para órganos sólidos.",
+      "resumen_previo": "Un tabloide reporta el primer caso mundial de supervivencia prolongada con riñón de cerdo trasplantado durante nueve meses. El contenido reitera hechos conocidos sin investigación original.",
       "extracto": "Kidney disease patient survives 9mths with transplant PIG organ in world 1st The Sun"
+    },
+    {
+      "titulo": "Riñón de cerdo permite a paciente esperar 9 meses a donante humano",
+      "fuente": "Pulso Diario San Luis",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPZzc0ZUFWNWQ2MF9DMVMxWXBxVWtiT0p5MnF0WUlnS0MtWHpaNHROUHJSVXFoRS14X2w0aWl2dG8zMTVGeFRtR3ZUSWUtbTJsaFhjQWR1cHRXMTd4LURiSmQ0d0l6QlZfbmhtMmdIQVRWYUxvQ19hTm1Jc0Q0WWhfNkF6SmdHWHEzS3RnWklJYjFaR0lKaG52RkF0Z1NpaHd4RzY1bU5XZ2ZuT2lDWVFnQzZhcS1udWNkam9XRDk0Vzlad9IBxwFBVV95cUxNalR5T2NYU1NXUVJxWEgyc0RIVl91R3daajE5eTFPY1dEcXhYU3V5MTZfbmc3emgwUWFYVXpSWmhxMS1oR1paWnpXX21OUldoMEJSdVd1ekh0SFJocUdSSXQxMkFXX0VuTzh1VTBQcWxEbnlReV91cEhHZW5qUmVyOVhESDI0V3VNWmNULWdBd0hKVDVYWkFzal9GcURCcVByNXlwTTFMMWZSWUVmR1BzNUNWUXFVd1NZNDd5NjBZT2VpSHM1WkU0?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 3,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Se informa que un riñón de cerdo permitió a un paciente esperar nueve meses hasta recibir un donante humano. La reescritura de medios locales no añade contexto científico o análisis diferenciado.",
+      "extracto": "Riñón de cerdo permite a paciente esperar 9 meses a donante humano Pulso Diario San Luis"
+    },
+    {
+      "titulo": "Orthotopic Porcine Liver and Kidney Xenotransplantation as a Step Toward Multi-Organ Replacement",
+      "fuente": "International Journal of Biological Sciences",
+      "fecha": "2026-09-03",
+      "url": "https://doi.org/10.7150/ijbs.139541",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 5,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Un estudio publicado en revista de primera línea explora el trasplante xenogénico ortotópico de hígado y riñón porcino como avance hacia reemplazo de múltiples órganos. La investigación representa un salto conceptual en la complejidad de los xenotrasplantes.",
+      "extracto": ""
+    },
+    {
+      "titulo": "Porcine kidney xenotransplantation as a bridge to allotransplantation: a first-in-human study",
+      "fuente": "The Lancet",
+      "fecha": "2026-09-03",
+      "url": "https://doi.org/10.1016/s0140-6736(26)01295-x",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 5,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "The Lancet publica el primer estudio en humanos sobre xenotrasplante renal porcino como puente hacia trasplante alogénico, documentando el protocolo y resultados clínicos del caso. Esta publicación en revista de máxima relevancia valida científicamente el procedimiento pionero.",
+      "extracto": ""
     },
     {
       "titulo": "Study of ChoironeX GalKO Porcine Thymokidney Xenotransplantation in End-Stage Renal Disease",
@@ -208,7 +273,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 3,
       "categoria": "Ensayos clínicos",
-      "resumen_previo": "Xeno Holdings abrió un ensayo clínico de fase 1 para evaluar un riñón porcino timocreado (ChoironeX GalKO) en pacientes con enfermedad renal en estadio terminal. El estudio, registrado como NCT07696962, busca validar la seguridad y eficacia de esta estrategia de xenotrasplantación modificada.",
+      "resumen_previo": "Se registra un ensayo clínico en fase 1 para estudiar xenotrasplante de timo-riñón porcino modificado (ChoironeX GalKO) en pacientes con enfermedad renal terminal. El estudio aún no ha iniciado reclutamiento y representa el siguiente paso en validación de órganos compuestos porcinos.",
       "extracto": "NCT07696962. Estado: NOT_YET_RECRUITING. Fase: PHASE1. Patrocinante: Xeno Holdings (US), LLC dba ChoironeX."
     },
     {
@@ -221,7 +286,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 4,
       "categoria": "Industria y financiamiento",
-      "resumen_previo": "Una instalación de cría de cerdos para xenotrasplantación en Stewartville completó su infraestructura y está lista para alojar animales donantes modificados genéticamente. La operacionalización de esta capacidad productiva regional representa un paso administrativo clave hacia la escala clínica.",
+      "resumen_previo": "Una instalación dedicada a la crianza de cerdos para xenotrasplantes en Stewartville alcanzó operatividad y está lista para recibir los primeros animales. El desarrollo de capacidad productiva regional es un hito logístico para avanzar ensayos clínicos.",
       "extracto": "Stewartville's xenotransplant pig facility is ready for animals Post Bulletin"
     },
     {
@@ -234,7 +299,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 4,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Investigadores analizaron la proteinuria persistente en xenotrasplantes renales porcinos, identificando mecanismos mecánicos, inmunológicos innatos y adaptativos que contribuyen al daño. El estudio resuelve una interrogante crítica sobre la relevancia clínica de este marcador en receptores humanos vivos.",
+      "resumen_previo": "Un análisis publicado propone un marco unificado para entender la proteinuria persistente tras xenotrasplantes renales de cerdo a primates no humanos, integrando mecanismos mecánicos, innatos y adaptativos. Este hallazgo es relevante para predecir complicaciones en futuros receptores humanos y optimizar estrategias de inmunosupresión.",
       "extracto": "Persistent proteinuria remains a major barrier to successful pig-to-nonhuman primate (NHP) kidney xenotransplantation and may become an important issue in clinical renal xenotransplantation. However, published human renal xenotransplant reports to date have not established severe proteinuria as a consistent clinical finding, and its relevance in living human recipients should therefore be regarded as an important unresolved question. In pig-to-NHP models, severe proteinuria may also be accompanied by urinary loss of therapeutic monoclonal antibodies, including anti-CD154, potentially compromis"
     },
     {
@@ -247,7 +312,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 4,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Una revisión evaluó el estado actual y estrategias emergentes en xenotrasplantación hepática con órganos porcinos modificados para insuficiencia hepática aguda. El trabajo sintetiza avances en edición genética e inmunomodulación, contextualizando por qué el hígado presenta desafíos particulares respecto a riñón y corazón.",
+      "resumen_previo": "Una revisión en revista de primera línea evalúa el estado actual del xenotrasplante hepático y estrategias emergentes con órganos porcinos modificados genéticamente para insuficiencia hepática aguda. Destaca que los ensayos clínicos en riñón y corazón desde 2021 demostraron viabilidad, aunque el hígado presenta desafíos únicos por sus funciones metabólicas y hemodinámicas.",
       "extracto": "Objective To review the current state of liver xenotransplantation and evaluate emerging strategies using genetically modified porcine organs for the management of acute liver failure. Background The shortage of donor organs continues to limit transplantation, with substantial waitlist mortality, especially in acute liver failure. Progress in the last decades has been driven by advances in gene editing and immunomodulation, allowing for clinical solid-organ xenotransplantation trials since 2021, with early kidney and heart experiences demonstrating feasibility. Liver xenotransplantation might "
     },
     {
@@ -260,7 +325,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 3,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Los autores proponen una hoja de ruta para integrar inteligencia artificial en xenotrasplantación clínica temprana, abordando respuestas inmunológicas, coagulación y riesgos infecciosos. El trabajo identifica oportunidades técnicas concretas para acelerar la aplicación segura de esta tecnología.",
+      "resumen_previo": "Un artículo propone un mapa de ruta para integrar inteligencia artificial en xenotrasplantación clínica temprana, identificando oportunidades para mejorar seguridad y acelerar decisiones clínicas. Aunque el aporte es secundario respecto al campo central, reconoce herramientas emergentes para abordar la complejidad inmunológica y de coagulación.",
       "extracto": "Xenotransplantation represents a potential solution to the persistent global organ shortage, yet its clinical application remains stalled by complex immunologic responses, coagulation dysregulation, species-specific biology, and infectious risks. Artificial intelligence (AI) could enhance safety, accelerate decision-making, and enable precision medicine initiatives within this rapidly evolving field. However, effective implementation of AI in xenotransplantation requires approaches specifically adapted to the biological and operational complexities of cross-species transplantation. Here, we pr"
     },
     {
@@ -273,21 +338,138 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 3,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Artículo de revisión que propone un marco de medicina predictiva, preventiva y personalizada para el tratamiento de diabetes tipo 1, incluyendo xenotrasplante de islotes como opción terapéutica. El trabajo contextualiza los desafíos del rechazo inmunológico y la escasez de donantes en estrategias de trasplante alogénico y xenogénico.",
+      "resumen_previo": "Una revisión examina innovaciones en trasplante de islotes para diabetes tipo 1, incluyendo estrategias de xenotrasplante alogénico dentro del marco de medicina predictiva, preventiva y personalizada. Es un aporte secundario que menciona xenotrasplantes como una opción terapéutica sin avances específicos nuevos.",
       "extracto": "Type 1 Diabetes (T1D) is an autoimmune disorder marked by the immune-mediated destruction of pancreatic β-cells, resulting in insulin deficiency and dysregulated glucose control. Current therapies-such as insulin replacement and artificial pancreas systems-manage symptoms but fail to restore endogenous β-cell function or halt disease progression. Transplantation strategies, including islet allo- and xenotransplantation, offer potential cures but remain limited by immune rejection, donor scarcity, and the adverse effects of systemic immunosuppression. Within the framework of predictive, prevent"
     },
     {
-      "titulo": "Morphological and Biomechanical Characterization of Amniotic Membranes Across Species: Equine, Canine, Porcine, Ovine, and Human Samples-A Pilot Study",
-      "fuente": "Europe PMC",
+      "titulo": "Xenotransplantation",
+      "fuente": "Annals of Surgery",
       "fecha": "2026-09-01",
-      "url": "https://doi.org/10.1111/vop.70236",
+      "url": "https://doi.org/10.1097/sla.0000000000007186",
       "tipo": "paper",
       "nivel": 1,
       "etiqueta_nivel": "fuente primaria",
-      "relevancia": 2,
+      "relevancia": 4,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Estudio comparativo de las propiedades biomecánicas de membranas amnióticas de múltiples especies, incluyendo cerdo. Aunque utiliza tejido porcino, el trabajo es de biología comparada general sin vinculación explícita con xenotrasplante a humanos.",
-      "extracto": "Introduction The use of amniotic membrane (AM) has become well established in the treatment of ocular surface disorders in both humans and animals. However, comparative studies of AM from different species remain scarce. Objective To compare the thickness and biomechanical properties of equine, canine, porcine, and ovine AMs with those of human AM. Methods Placentas were collected, and AMs were manually separated from the chorion. All AM samples were cryopreserved in a 1:1 solution of Dulbecco's Modified Eagle's Medium (DMEM) and glycerin at -80°C for 60 days. After thawing, samples underwent "
+      "resumen_previo": "Una revisión en Annals of Surgery sintetiza el estado actual del xenotrasplante hepático con órganos porcinos editados genéticamente para insuficiencia hepática aguda, subrayando que ensayos clínicos en riñón y corazón desde 2021 han demostrado viabilidad técnica. Constituye síntesis de valor en revista de primera línea sobre barrera clínica próxima.",
+      "extracto": "Objective: To review the current state of liver xenotransplantation and evaluate emerging strategies using genetically modified porcine organs for the management of acute liver failure. Background: The shortage of donor organs continues to limit transplantation, with substantial waitlist mortality, especially in acute liver failure. Progress in the last decades has been driven by advances in gene editing and immunomodulation, allowing for clinical solid-organ xenotransplantation trials since 2021, with early kidney and heart experiences demonstrating feasibility. Liver xenotransplantation migh"
+    },
+    {
+      "titulo": "411.2: The potential of Macaca fuscata, as a recipient model for porcine islet xenotransplantation.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251724.13772.3f",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 3,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se evalúa el potencial del macaco de cola larga como modelo receptor para xenotrasplante de islotes pancreáticos porcinos. El trabajo contribuye a la validación preclínica de órganos porcinos modificados en primatas no humanos.",
+      "extracto": ""
+    },
+    {
+      "titulo": "P2.218: Fabrication and functional validation of parathyroid organoids for xenotransplantation in non-human primates: Therapeutic approaches to hypoparathyroidism.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001252972.49351.23",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 3,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se describe la fabricación y validación funcional de organoides de paratiroides para xenotrasplante en primates no humanos como estrategia terapéutica para hipoparatiroidismo. El estudio explora una aplicación novedosa de tejidos porcinos enginerizados.",
+      "extracto": ""
+    },
+    {
+      "titulo": "385.7: Sequential allotransplantation after failure of pig-to-rhesus monkey kidney xenotransplantation: A case report.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251340.49365.ab",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Se reporta un caso de trasplante alogénico secuencial después del fracaso de un xenotrasplante de riñón cerdo-a-macaco, documentando el rechazo del xenoinjerto y la transición clínica a terapia convencional. El caso ilustra los desafíos actuales en xenotrasplante renal preclínico.",
+      "extracto": ""
+    },
+    {
+      "titulo": "385.6: Preformed and De Novo xenoreactive IgM antibodies contribute to early xenograft loss in pig-to-monkey kidney xenotransplantation.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251336.23667.52",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se identifica que anticuerpos xeno-reactivos IgM preformados y de novo contribuyen a la pérdida temprana del injerto en xenotrasplante de riñón cerdo-a-macaco. El hallazgo elucida un mecanismo inmunológico clave del rechazo hiperagudo.",
+      "extracto": ""
+    },
+    {
+      "titulo": "385.5: Antibody responses against swine leukocyte antigens contribute to early rejection after pig-to-monkey kidney xenotransplantation.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251332.82307.d0",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se demuestra que la respuesta de anticuerpos contra antígenos leucocitarios porcinos contribuye al rechazo temprano en xenotrasplante renal cerdo-a-macaco. El estudio señala la importancia de la compatibilidad antigénica en la supervivencia del injerto.",
+      "extracto": ""
+    },
+    {
+      "titulo": "115.1: Early clinical experience with gene-edited porcine kidney xenotransplantation in four living human recipients.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/tp.0000000000005854",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 5,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Se reporta la experiencia clínica temprana con xenotrasplante de riñón porcino editado genéticamente en cuatro receptores humanos vivos. Es un hito significativo en la progresión del xenotrasplante hacia la aplicación clínica en seres humanos.",
+      "extracto": ""
+    },
+    {
+      "titulo": "385.4: First large-cohort study profiling the baseline immunological status for xenotransplantation in liver transplant candidates: Implications for safe bridging from gene-edited pigs.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251328.18633.25",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se presenta el primer estudio de cohorte grande que perfila el estado inmunológico basal en candidatos a trasplante hepático con vistas al xenotrasplante como puente terapéutico. El trabajo establece parámetros de selección para futuros ensayos con órganos porcinos editados.",
+      "extracto": ""
+    },
+    {
+      "titulo": "385.3: Human thrombomodulin improves early coagulopathy, but innate immune–driven injury limits survival in pig-to-NHP liver xenotransplantation.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001251324.41313.d4",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se evalúa el impacto de trombomodulina humana en coagulopatía temprana durante xenotrasplante hepático cerdo-a-primate no humano, demostrando que lesión inmune innata es limitante. El estudio identifica tanto progresos como barreras críticas en este modelo.",
+      "extracto": ""
+    },
+    {
+      "titulo": "331.3: Pre-IND evaluation of orthotopic cardiac xenotransplantation using ten-gene-edited porcine donor hearts with a clinically relevant immunosuppressive regimen in non-human primates.",
+      "fuente": "Transplantation",
+      "fecha": "2026-08-31",
+      "url": "https://doi.org/10.1097/01.tp.0001250832.98850.65",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Se evalúa preclínicamente el xenotrasplante cardiaco ortotópico con corazones porcinos con diez genes editados bajo inmunosupresión clínicamente relevante en primates no humanos. El trabajo representa avance hacia ensayos clínicos de xenotrasplante cardiaco.",
+      "extracto": ""
     },
     {
       "titulo": "Trasplantes de cerdo, la gran esperanza",
@@ -299,7 +481,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 2,
       "categoria": "Otros",
-      "resumen_previo": "Pieza de contenido reciclado sin extracto sustantivo ni fuente verificable que impide evaluar su contenido específico sobre xenotrasplantes.",
+      "resumen_previo": "",
       "extracto": "Trasplantes de cerdo, la gran esperanza Exclusiva | Plataforma de noticias"
     },
     {
@@ -310,9 +492,9 @@
       "tipo": "prensa",
       "nivel": 3,
       "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 4,
+      "relevancia": 3,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Reporte de la realización del primer trasplante de riñón de cerdo en Asia por cirujanos chinos. Constituye un hito regional significativo en la expansión de procedimientos de xenotrasplante fuera del ámbito norteamericano y europeo.",
+      "resumen_previo": "Se reporta el primer xenotrasplante de riñón porcino realizado en Asia por cirujanos chinos. El procedimiento marca la expansión geográfica de aplicaciones clínicas del xenotrasplante renal fuera de Norteamérica.",
       "extracto": "Chinese surgeons perform first pig kidney transplant in Asia Turkmenportal.com"
     },
     {
@@ -325,7 +507,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 3,
       "categoria": "Ensayos clínicos",
-      "resumen_previo": "Ensayo clínico que compara injertos de tejido blando autólogo con matriz de colágeno xenogénico (Zderm) en procedimientos periodontales. Aunque es un registro oficial de ensayo, la aplicación es periodontal y no involucra órganos sólidos.",
+      "resumen_previo": "Ensayo que compara injertos de tejido blando autólogo con matriz de colágeno xenogénica en procedimientos periodontales. Representa una aplicación menor de xenomateriales en cirugía dental sin relación con órganos complejos.",
       "extracto": "NCT07713199. Estado: NOT_YET_RECRUITING. Fase: NA. Patrocinante: The University of Texas Health Science Center at San Antonio."
     },
     {
@@ -338,7 +520,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 2,
       "categoria": "Industria y financiamiento",
-      "resumen_previo": "Inversión de Natco Pharma en eGenesis, empresa dedicada al desarrollo de xenotrasplante porcino. Novedades sobre rondas de inversión en empresas del sector se clasifican como información financiera corporativa.",
+      "resumen_previo": "Inversión de Natco Pharma en eGenesis, empresa de xenotrasplantes. Como reescritura sin contexto adicional, es información financiera que requiere verificación de fuentes primarias.",
       "extracto": "Natco Pharma Invests $14M in eGenesis Voice of Healthcare"
     },
     {
@@ -351,7 +533,7 @@
       "etiqueta_nivel": "reescritura / sin verificar",
       "relevancia": 2,
       "categoria": "Industria y financiamiento",
-      "resumen_previo": "Anuncio de inyección de capital de Natco Pharma en eGenesis alcanzando un total de inversión de 22 millones de dólares. Se trata de información de movimientos financieros corporativos, no de avances científicos o clínicos.",
+      "resumen_previo": "Mismo evento de inversión reportado nuevamente desde otra fuente de reescritura. No aporta contexto adicional sobre la ronda de financiamiento ni sus implicaciones técnicas.",
       "extracto": "NATCO Pharma Invests $14 Million In eGenesis Raising Total Investment To $22 Million Sahi"
     },
     {
@@ -363,8 +545,8 @@
       "nivel": 1,
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 2,
-      "categoria": "Ciencia y preprints",
-      "resumen_previo": "Estudio sobre la aplicabilidad anatómica de laringe porcina para entrenamiento quirúrgico en microsurgía laríngea. Aunque usa especímenes de cerdo, el enfoque es educativo y de biología comparada sin conexión directa con xenotrasplante funcional.",
+      "categoria": "Otros",
+      "resumen_previo": "Estudio de biología porcina aplicada a entrenamiento quirúrgico en laringe. No tiene relación directa con xenotrasplante a humanos sino con validación de modelos de práctica quirúrgica.",
       "extracto": "Objectives To make an anatomical comparison between porcine and human laryngeal structures, and evaluate suitability for microsurgical training in the porcine larynx. Methods Thirty Landrace pig larynges underwent muscle-dissection to expose thyroid cartilage, cricoid cartilage, and intrinsic laryngeal structures. Quantitative analysis was conducted comparing porcine cartilage dimensional data with human specimens. Histological evaluation of vocal fold architecture was performed using hematoxylin-eosin (H-E) and Masson staining. The laryngeal internal structures were exposed using a laryngeal "
     },
     {
@@ -377,7 +559,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 5,
       "categoria": "Hitos clínicos",
-      "resumen_previo": "Se realizó el primer trasplante simultáneo de hígado auxiliar y riñón heterotópico de un cerdo modificado genéticamente en un receptor humano fallecido, con análisis multiómico longitudinal de la respuesta inmunológica en ambos órganos. El estudio caracteriza por primera vez la interacción adaptativa entre xenoinjertos pareados y revela patrones específicos de inmunidad innata diferenciados por órgano, proporcionando datos críticos sobre los mecanismos de rechazo en xenotrasplante.",
+      "resumen_previo": "Análisis multiómico del primer trasplante simultáneo de hígado auxiliar y riñón de cerdo editado en un paciente fallecido, con perfilado detallado de respuestas inmunológicas tempranas. Hito en comprensión de mecanismos de rechazo en xenotrasplante múltiple de órganos.",
       "extracto": "Abstract The interactions and adaptive responses of liver and kidney xenografts within the same recipient remain poorly understood. Therefore, we transplanted an auxiliary liver and a heterotopic kidney from one six-gene-edited pig into a human decedent. Longitudinal blood profiling was integrated with source-resolved single-cell transcriptomics, chromatin accessibility, spatial and proteomic analyses. Blood analyses revealed recurrent neutrophil-rich intervals with early degranulation and interleukin-1 signalling, followed by late monocyte recruitment, antigen-presentation and interferon prog"
     },
     {
@@ -390,7 +572,7 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 4,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Se evaluó la viabilidad de preservar riñones porcinos a 10 °C en lugar de la temperatura convencional de 4 °C, utilizando modelos de autotrasplante porcino que simulan donación tras muerte circulatoria y tras muerte encefálica. Los hallazgos sugieren que la optimización térmica mejoraría los resultados en trasplante renal, replicando avances previos en preservación de pulmones.",
+      "resumen_previo": "Estudio preclínico en modelo de autoinjerto porcino evaluando preservación de riñón a 10°C versus 4°C tradicional. Avance en optimización de almacenamiento que podría mejorar resultados de xenotrasplante renal.",
       "extracto": "Background Optimization of organ storage is essential to improve outcomes in kidney transplantation. Recent studies in lung transplantation highlight the impact of temperature on organ preservation, leading to a shift from traditional 4 °C \"on-ice\" storage toward 10 °C. We sought to determine whether these findings extend to kidney transplantation using 2 distinct porcine autotransplant models. Methods The initial donation after circulatory death model consisted of 30 min of warm ischemia followed by a brief 7.5 h storage on-ice (n = 5) or at 10 °C (n = 5). Grafts were retransplanted, the cont"
     },
     {
@@ -403,8 +585,47 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 4,
       "categoria": "Ensayos clínicos",
-      "resumen_previo": "Ensayo fase 1/2 reclutando pacientes con diabetes tipo 1 para evaluar seguridad y eficacia de células pancreáticas porcinas (OPF-310) trasplantadas. Este es un hito en la valoración clínica de xenotrasplante de páncreas, órgano de alto interés terapéutico para diabetes.",
+      "resumen_previo": "Ensayo fase 1/2 de células pancreáticas porcinas para diabetes tipo 1 patrocinado por Otsuka. Representa entrada a ensayos clínicos en pacientes de nueva fuente de xenocélulas pancreáticas.",
       "extracto": "NCT06575426. Estado: RECRUITING. Fase: PHASE1, PHASE2. Patrocinante: Otsuka Pharmaceutical Factory, Inc.."
+    },
+    {
+      "titulo": "Porcine Expanded Potential Stem Cells as a Versatile Platform for Multiplex Genome Editing and Immunophenotyping in Xenotransplantation",
+      "fuente": "Xenotransplantation",
+      "fecha": "2026-08-21",
+      "url": "https://doi.org/10.1111/xen.70161",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Descripción de células madre pluripotentes porcinas expandidas como plataforma para edición génica y fenotipificación inmunológica en xenotrasplante. Avance en líneas celulares donantes que mejora eficiencia de edición y caracterización de compatibilidad.",
+      "extracto": "ABSTRACT Xenotransplantation utilizing pig donors offers a promising solution to organ shortages, but immune incompatibilities across species remain a major challenge. Current reliance on porcine primary fibroblasts for genome editing is limited by low inefficiency in complex gene editing and difficulties in immunophenotyping edited cells. In this study, we demonstrate that porcine expanded potential stem cells (pEPSCs), derived from preimplantation embryos, provide a robust and versatile platform for generating donor cells for xenotransplantation. These pluripotent cells can differentiate int"
+    },
+    {
+      "titulo": "A Centimeter-Scale, Peristaltic Human Intestinal Organoid with Integrated Neuro-Immune-Vascular Systems Recapitulates Enteritis and Orthotopic Colorectal Cancer",
+      "fuente": "Preprint",
+      "fecha": "2026-08-20",
+      "url": "https://doi.org/10.64898/2026.08.18.745659",
+      "tipo": "preprint",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 2,
+      "categoria": "Ciencia y preprints",
+      "resumen_previo": "Investigadores desarrollaron organoides intestinales humanos complejos a partir de células madre que incluyen múltiples tipos de tejidos y alcanzan funcionalidad con contracciones peristálticas. El trabajo avanza el modelado de enfermedades inflamatorias e intestinales, pero no aborda directamente xenotrasplantes sino ingeniería de tejidos humanos para investigación.",
+      "extracto": "Human pluripotent stem cell-derived intestinal organoids hold great promise for disease modeling, drug screening, and regenerative medicine. However, conventional intestinal organoids are predominantly epithelial, small in scale, and lack the multicellular complexity required to recapitulate the pathophysiology of intestinal disorders such as inflammatory bowel disease (IBD) and colorectal cancer (CRC). Here, we report the development of Centimeter-Scale, purely 3D self-organized human intestinal organoids (IOs) from induced pluripotent stem cells (iPSCs) that encompass multiple tissue lineage"
+    },
+    {
+      "titulo": "Cardiac xenotransplantation: From imagination to achievable practice",
+      "fuente": "World Journal of Cardiology",
+      "fecha": "2026-08-20",
+      "url": "https://doi.org/10.4330/wjc.125199",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 4,
+      "categoria": "Hitos clínicos",
+      "resumen_previo": "Una revisión publicada en revista de primera línea sintetiza el desarrollo del xenotrasplante cardíaco desde su fundamentación científica hasta la aplicación clínica pionera en 2022, enfatizando avances en edición génica, inmunosupresión y preservación de órganos. Constituye un registro crítico del estado del arte en el hito más significativo del campo hasta la fecha.",
+      "extracto": "Allogeneic heart transplantation and durable mechanical circulatory support remain the standard treatments for advanced refractory heart failure, but donor-heart scarcity and device-related complications leave many patients without viable options. Driven by advances in gene editing, immunosuppression, and donor-organ preservation, cardiac xenotransplantation (XTx) has progressed rapidly, culminating in the landmark first-in-human compassionate-use application in 2022. This minireview critically summarizes the development of clinical cardiac XTx. We performed a narrative literature search of Pu"
     },
     {
       "titulo": "PPIA-CD147 Interaction Mediates Immune-induced Cardiomyocyte Hypertrophy After Cardiac Xenotransplantation",
@@ -416,90 +637,25 @@
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 4,
       "categoria": "Ciencia y preprints",
-      "resumen_previo": "Se identificó que la interacción PPIA-CD147 entre células inmunológicas y cardiomiocitos media la hipertrofia patológica post-trasplante cardíaco en un modelo de xenotrasplante heterotópico abdominal sin carga mecánica. El descubrimiento abre una vía para mitigar el remodelado maladaptativo, principal obstáculo para la supervivencia prolongada en xenotrasplante cardíaco.",
+      "resumen_previo": "Un estudio en xenotrasplante heterotópico cardíaco identifica que la interacción entre dos proteínas (PPIA-CD147) media la hipertrofia patológica del corazón trasplantado, mecanismo clave en el rechazo prolongado. El hallazgo propone un blanco terapéutico novedoso para mejorar la supervivencia del injerto cardíaco xenogénico.",
       "extracto": "Background Pathological myocardial hypertrophy constitutes a major impediment to the prolonged survival of heart xenotransplantation. Conventional approaches, including intensive antihypertensive therapy and growth factor receptor knockout, have demonstrated limited efficacy in mitigating this maladaptive remodeling. Immune-mediated injury is the fundamental cause of xenograft failure, the intercellular communication between immune cells and cardiomyocytes remains insufficiently characterized. Methods To avoid confounding influences from hyperacute rejection and mechanical overload, we establi"
-    },
-    {
-      "titulo": "Alpha-Gal Syndrome Is More than Meats the IgE: A Patient Survey of Symptoms, Diagnosis, and Burdens",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-13",
-      "url": "https://doi.org/10.3390/healthcare14162522",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 2,
-      "categoria": "Bioética y opinión pública",
-      "resumen_previo": "Un estudio de encuesta documenta la experiencia de pacientes con síndrome alfa-gal, una alergia a productos de mamíferos que genera reacciones retardadas. El trabajo caracteriza síntomas, tiempo de reacción y tipos de profesionales que diagnostican la condición, información relevante dado que el síndrome afecta potencialmente a candidatos para xenotrasplante.",
-      "extracto": "Background/Objectives : Alpha-gal syndrome (AGS) is an allergic condition that results in delayed symptoms in response to exposure to mammalian products. There is limited research on which healthcare professionals (HCPs) are diagnosing AGS, types of symptoms, time to reactions, and products that induce allergic responses in AGS. This survey study aimed to further identify the patient journey and characterize reactions for people with AGS. Methods : Adult patients with HCP-diagnosed AGS took a survey offered through social media and support organizations. Questions included diagnosing HCP type,"
-    },
-    {
-      "titulo": "&lt;i&gt;Porcine Rotavirus&lt;/i&gt;: pathogenic mechanisms, host immune responses, and progress toward control",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-13",
-      "url": "https://doi.org/10.3389/fmicb.2026.1859923",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 2,
-      "categoria": "Ciencia y preprints",
-      "resumen_previo": "Una revisión examina la biología del rotavirus porcino, sus mecanismos de patogenia y respuestas inmunológicas del hospedador, incluyendo potencial de transmisión cruzada de especies. Aunque toca patógenos animales relevantes para seguridad xenogénica, no aborda específicamente xenotrasplante a humanos.",
-      "extracto": "Porcine Rotavirus ( PoRV ), a major pathogen causing diarrhea in piglets and significant economic losses, exhibits high genotypic diversity and poses a risk of cross-species transmission. PoRV infection is initiated by the interaction of its outer capsid proteins, VP4 and VP7, with multiple host cell receptors (e.g., sialic acids, integrins), triggering complex processes of endocytosis and membrane penetration that ultimately lead to enterocyte dysfunction and diarrhea. Diverse immune evasion strategies have been evolved by PoRV , among which the host interferon responses and cellular protein "
-    },
-    {
-      "titulo": "Human iPSC-derived mesenchymal progenitor cell sheets promote tissue formation after xenotransplantation",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-11",
-      "url": "https://doi.org/10.1016/j.isci.2026.117128",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 4,
-      "categoria": "Ciencia y preprints",
-      "resumen_previo": "Un estudio demuestra que láminas de células progenitoras mesenquimales derivadas de células madre pluripotentes inducidas humanas sobreviven y forman estructuras tipo tejido después de xenotrasplantación en ratones inmunológicamente competentes. El hallazgo avanza el entendimiento de supervivencia in vivo y potencial regenerativo de un tipo celular relevante para terapias xenogénicas.",
-      "extracto": "Mesenchymal stromal cell (MSC) sheets are a promising platform for regenerative therapy, but their in vivo survival and capacity to form tissue-like structures remain poorly understood. Here, we investigated whether sheets derived from human induced pluripotent stem cell (iPSC)-derived mesenchymal progenitor cells (hiPS-MPCs) can survive and form tissue-like structures after xenotransplantation. hiPS-MPCs were differentiated from human iPSCs, validated by surface marker expression and multilineage differentiation potential, and assembled into intact cell sheets. Mouse MSC, fibroblast, and hiPS"
-    },
-    {
-      "titulo": "Longitudinal multi-omic profiling of a pig-to-human lung xenograft reveals phased immune and tissue-remodeling responses",
-      "fuente": "Preprint",
-      "fecha": "2026-08-11",
-      "url": "https://doi.org/10.21203/rs.3.rs-10351832/v1",
-      "tipo": "preprint",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 5,
-      "categoria": "Hitos clínicos",
-      "resumen_previo": "Un preprint documenta el primer análisis molecular longitudinal integrado de un xenotrasplante de pulmón porcino de seis genes editados en un receptor humano, revelando las fases de respuestas inmunológicas y remodelación tisular durante los nueve días de supervivencia. Este estudio define por primera vez el paisaje molecular asociado a un hito clínico reciente en xenotrasplante de órganos complejos.",
-      "extracto": "Abstract A prior clinical study showed that six-gene-edited pig lung xenografts transplanted into human decedents restricted hyperacute rejection and remained functional for nine days. To define the accompanying molecular landscape, we integrated longitudinal bronchoalveolar lavage fluid (BALF) EV-enriched proteomics, Peripheral Blood Mononuclear Cells (PBMC) CyTOF profiling and spatial transcriptomics of xenograft biopsies. The analysis resolved phased systemic and tissue responses after transplantation. Early after reperfusion, BALF proteins showed terminal complement and coagulation-associa"
-    },
-    {
-      "titulo": "Hematopoietic Stem Cell States, Function, and Molecular Identity: From Quantitative Assays to Modern Multiomics",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-07",
-      "url": "https://doi.org/10.1016/j.exphem.2026.105489",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 2,
-      "categoria": "Ciencia y preprints",
-      "resumen_previo": "Una revisión resume métodos históricos y modernos para caracterizar células madre y progenitoras hematopoyéticas, incluyendo modelos de xenotrasplantación en roedores. Aunque menciona xenotrasplantación como herramienta de investigación básica, no trata xenotrasplante clínico a humanos.",
-      "extracto": "Hematopoietic stem and progenitor cells (HSPCs) are characterized by the ability to proliferate, differentiate into multiple lineages, self-renew, and repopulate the hematopoietic system. Development of functional assays enabling qualitative and quantitative measurements of these different features are cornerstones of the field. In this review, we summarize key approaches from early transplantation and spleen colony-forming unit assays to in vitro clonogenic systems, long-term culture assays, xenotransplantation models, and single-cell platforms with historical perspectives and evaluation of t"
-    },
-    {
-      "titulo": "From Gene Editing to Exogenesis: Pigs as a Source of Immune-compatible Organs for Transplantation",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-04",
-      "url": "https://doi.org/10.1097/tp.0000000000005845",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 4,
-      "categoria": "Ciencia y preprints",
-      "resumen_previo": "Revisión de avances en xenotrasplante porcino, enfocada en la ingeniería genética de cerdos para eliminar xenoantígenos glucosídicos y expresar reguladores humanos de complemento y coagulación. Los resultados demuestran mitigación de rechazo en modelos con primates no humanos, y casos recientes en humanos han comprobado factibilidad en corazón, riñón e hígado, aunque la supervivencia a largo plazo sigue siendo un desafío pendiente.",
-      "extracto": "The persistent shortage of human organs for transplantation has intensified efforts to develop alternative sources, specifically xenotransplantation and exogenesis. Xenotransplantation uses genetically engineered pigs to provide organs, tissues, and cells for clinical use. Significant progress has occurred in developing multigene-modified pigs that lack glycan xenoantigens while expressing human complement and coagulation regulators. These modifications have successfully mitigated hyperacute, antibody-mediated, and cellular rejection in preclinical nonhuman primate models. Recent compassionate"
     }
   ],
   "menciones": [],
   "descartados": [
+    {
+      "titulo": "La junta militar de Níger acusa a Francia de implicarse en un golpe fallido en el país",
+      "fuente": "Noticias SIN",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOWkdlLWF6RnJ5ZGdsYVo1TXY1ODFfVGxDREF1T1pzS2RzWjFrbFlPdTEtTElQWEE2ZnFGNXFUNzBZbU5SdzNob1R4SEFSX2NWVTRZck90eHphZFpBc1NpaFR1ZHlSLTFHbng1OTllSzBxRDRUWjBLOXFPRGl2YzMzNXB4NmU1dGRFVWF6bzU1S3lISGFFLWw4OGJocFhBZXlIbElxctIBrAFBVV95cUxQVGt1Tk43c1U0NF9WRE5iYWJGcHp3NE9WWHdJc3lQTWk3MThnczFwSUNDTGRjVnMzd1JWZ1hQbjg4c2xBSTh5M3Q2OU45YjhfelhYYVo5UkUyODRxMTRXaWdITVA5Q0N4VG9takVrblltRGFwUUNlbW0tM0twZjJEYk1QUllsVXVmWkJxcjNJWklVa3FyQVZ2bzJpNHpxWEh5ZE9BRlpwZ0h3ZHVF?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 1,
+      "categoria": "Otros",
+      "resumen_previo": "",
+      "extracto": "La junta militar de Níger acusa a Francia de implicarse en un golpe fallido en el país Noticias SIN"
+    },
     {
       "titulo": "La OEA expresa «apoyo al orden democrático» en Bolivia y llama al diálogo ante protestas",
       "fuente": "HolaNews",
@@ -525,6 +681,19 @@
       "categoria": "Otros",
       "resumen_previo": "",
       "extracto": "Ejecutivo Trump pide al Supremo que le permita ejecutar la restricción al voto por correo HolaNews"
+    },
+    {
+      "titulo": "Extraditan a Estados Unidos otro dominicano acusado de tráfico de drogas y lavado de activos",
+      "fuente": "Noticias SIN",
+      "fecha": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVVc0b0k4Mm1RYmo2YnM3dTMtWnV5cVI4SnlFcWoyeFNJRXkyajVUS3VacTZLbm51T2R1ZnpCVURzZFRsVXBNTzFHMW4zSTJMcVRuSWhJTDhKSnk2WUJ2bkhJVUNZN0tjYjE4LWVUWXRCdGhCUm1yb2E1SDhNaTI0SnBwbFlrM0J1OEQwUUpJeHlBTVBmMXlrQlNISFZfRTliY3FPalFrYVRDRjFTZl83WlpKdkF0QdIBvgFBVV95cUxOZV94NFp6TUJQT2Q3cDhfUnYxbXo3c2lLdHRSM1k4eTJpbVdNNjZMYllaZS1pTXIzVWhjX0ZZOHc4LTZmYlNYZm5TQWpWbFRYaUFsRUJkZmNFckhBSTdRdlp5cm1aR21WdUIybWNOT2pSTXp1QjBtdFpSV0E2RTh4UlpTMGFLYlVDeXh6RjB3dldSbEcxOEZ1T2ZIcFF1blZRVDFsME1hOWFobDdqT2k4aEpydXlvbkJhVV9QZzJR?oc=5",
+      "tipo": "prensa",
+      "nivel": 3,
+      "etiqueta_nivel": "reescritura / sin verificar",
+      "relevancia": 1,
+      "categoria": "Otros",
+      "resumen_previo": "",
+      "extracto": "Extraditan a Estados Unidos otro dominicano acusado de tráfico de drogas y lavado de activos Noticias SIN"
     },
     {
       "titulo": "Abuja Hospital Suspends Kidney Transplant Services Amid Organ Trafficking Probe",
@@ -564,6 +733,19 @@
       "categoria": "Otros",
       "resumen_previo": "",
       "extracto": "China punishes 10 for spreading ‘fake’ flood toll The Times of India"
+    },
+    {
+      "titulo": "Morphological and Biomechanical Characterization of Amniotic Membranes Across Species: Equine, Canine, Porcine, Ovine, and Human Samples-A Pilot Study",
+      "fuente": "Europe PMC",
+      "fecha": "2026-09-01",
+      "url": "https://doi.org/10.1111/vop.70236",
+      "tipo": "paper",
+      "nivel": 1,
+      "etiqueta_nivel": "fuente primaria",
+      "relevancia": 1,
+      "categoria": "Otros",
+      "resumen_previo": "",
+      "extracto": "Introduction The use of amniotic membrane (AM) has become well established in the treatment of ocular surface disorders in both humans and animals. However, comparative studies of AM from different species remain scarce. Objective To compare the thickness and biomechanical properties of equine, canine, porcine, and ovine AMs with those of human AM. Methods Placentas were collected, and AMs were manually separated from the chorion. All AM samples were cryopreserved in a 1:1 solution of Dulbecco's Modified Eagle's Medium (DMEM) and glycerin at -80°C for 60 days. After thawing, samples underwent "
     },
     {
       "titulo": "Non-genetic remodeling drives leukemia propagation and reveals actionable vulnerabilities in acute myeloid leukemia",
@@ -626,7 +808,7 @@
       "nivel": 1,
       "etiqueta_nivel": "fuente primaria",
       "relevancia": 1,
-      "categoria": "Otros",
+      "categoria": "Ensayos clínicos",
       "resumen_previo": "",
       "extracto": "NCT06557798. Estado: RECRUITING. Fase: no especificada. Patrocinante: The Leeds Teaching Hospitals NHS Trust."
     },
@@ -657,251 +839,17 @@
       "extracto": "Cell transplantation-based regenerative medicine offers a promising strategy for repairing damaged neural pathways following spinal cord injury. Nonetheless, the integration of transplanted cells-particularly neurons-into host tissue remains insufficiently characterized. Notably, the molecular mechanisms underlying graft-host interaction are still poorly defined. In this study, we investigated how directly transplanted mature neurons contribute to the structural repair of fully transected spinal circuits in a rat xenotransplantation model and sought to identify candidate molecules involved in "
     },
     {
-      "titulo": "Bioethics - Public Attitudes, Ethics, Healthcare",
-      "fuente": "Britannica",
+      "titulo": "Kidney International",
+      "fuente": "ScienceDirect.com",
       "fecha": "2026-08-20",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPcG5UOEZGeGM2X1F5Sm5aMEFadlZhS0pCZktIbWVjdkRsT1I0SVo2WDl5ZnBTbDNPTEV5TFNGOHBFUnRiSUZhQjY1N3k5VlotQ21HLWViWmlQMlcyYjlmT0ZTSHlfSXppUVNhV0N5WXBqWXU3Yk1TZjFmYngweGhadER1bUVidw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1QTnI3MWNZVjMtN2pGcEZkUVM4eTVJdVBrUWNWaTY0cDZ1NzU4bHNjS05CSXlqYmk1cHE5dUt0X0ZKSXNlcHhxR1k0aDJXaVQ3VFBzS0s5QVN5T0E4V0FCNk5DS2kwV1RtcUtKUGJjVlU2ZlByQWQwbmJfY0R3Wjg?oc=5",
       "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
+      "nivel": 2,
+      "etiqueta_nivel": "reporteo original",
       "relevancia": 1,
       "categoria": "Otros",
       "resumen_previo": "",
-      "extracto": "Bioethics - Public Attitudes, Ethics, Healthcare Britannica"
-    },
-    {
-      "titulo": "A Centimeter-Scale, Peristaltic Human Intestinal Organoid with Integrated Neuro-Immune-Vascular Systems Recapitulates Enteritis and Orthotopic Colorectal Cancer",
-      "fuente": "Preprint",
-      "fecha": "2026-08-20",
-      "url": "https://doi.org/10.64898/2026.08.18.745659",
-      "tipo": "preprint",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Human pluripotent stem cell-derived intestinal organoids hold great promise for disease modeling, drug screening, and regenerative medicine. However, conventional intestinal organoids are predominantly epithelial, small in scale, and lack the multicellular complexity required to recapitulate the pathophysiology of intestinal disorders such as inflammatory bowel disease (IBD) and colorectal cancer (CRC). Here, we report the development of Centimeter-Scale, purely 3D self-organized human intestinal organoids (IOs) from induced pluripotent stem cells (iPSCs) that encompass multiple tissue lineage"
-    },
-    {
-      "titulo": "Rey Lear regresa al Teatro Helénico: el derrumbe del poder en una versión contemporánea",
-      "fuente": "Hoja de Ruta Digital",
-      "fecha": "2026-08-18",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOQ2FGUzRWWmEwS3BIN0VIa0tHOG5Cal9temxLYlc2M25yT3NLcWNyWFA4MHdRZHMxbnQwWE1LWExyMWxUR19Fc3AtbGJlM00zVnN6Q0FXdXNaVTRWMkRsaUdBT2UwbmQwNmdhdmQ4bWZ0ZDRId0p0dEJOel9pQk53OEhCa3Y1al9zd1I0a0lqNDN3b0xZOFZhRHU1cTVxUXZGd1ZzMVJEMmZzSXo0ZHZlUUd0NW9ZNHM?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Rey Lear regresa al Teatro Helénico: el derrumbe del poder en una versión contemporánea Hoja de Ruta Digital"
-    },
-    {
-      "titulo": "CRISPR Technology Market Size, Share | Industry Report, 2034",
-      "fuente": "Straits Research",
-      "fecha": "2026-08-18",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5jenFHRllDdjF0elRrVkFoUmdCb3BzQjVsQThEVEFSTFlneEpTclZwdnJHMzl1TlUwSGFMMjB2REpsRHNVUm1NSDhzekY4WnYzU3Y3NVgyMWlIV2xYS3lHSGVNRTMwcmxQQW1V?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "CRISPR Technology Market Size, Share | Industry Report, 2034 Straits Research"
-    },
-    {
-      "titulo": "Multidrug-resistant livestock-associated ST9-MRSA causing severe human infection without animal exposure: the food chain as a potential transmission route in China",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-18",
-      "url": "https://doi.org/10.1007/s00203-026-05145-5",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "ST9 methicillin-resistant Staphylococcus aureus (MRSA) is a typical livestock-associated lineage in Asia and represents an important reservoir of antimicrobial resistance (AMR). However, its contribution to human infection and its transmission pathways remain incompletely understood. Here, we characterized a multidrug-resistant ST9-MRSA isolate (SAH77) recovered from a severe skin infection in a patient without occupational animal exposure, aiming to assess its antimicrobial resistance, genomic features, and pathogenic potential. Phylogenetic analysis based on a dataset of 218 Chinese ST9 S. a"
-    },
-    {
-      "titulo": "Nephrology 2050: an evidence-informed roadmap from precision prevention to kidney regeneration",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-18",
-      "url": "https://doi.org/10.1007/s11255-026-05338-3",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Background Chronic kidney disease (CKD) is projected to become one of the leading causes of premature mortality worldwide by 2050. Simultaneously, advances in CKM medicine, artificial intelligence (AI), molecular biology, and regenerative science are transforming nephrology from a reactive specialty focused on kidney failure into one centered on lifelong kidney health preservation. Recent findings This review synthesizes contemporary evidence describing four converging revolutions that are reshaping kidney medicine: precision prevention, digital and precision nephrology, advanced kidney replac"
-    },
-    {
-      "titulo": "China launches 24th batch of low-orbit internet satellites from Hainan site",
-      "fuente": "The Times of India",
-      "fecha": "2026-08-16",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPUkstS3YxRzR1eU5jaEw1OHZXSkE1Q0RUSURHWEE5WlNuaHBwTHd1M21rVG9EQ1NWZGtHQldLLS13dkdHMlhld0tzQ1FYWXdrQkJMUWo4ZHZmV1lXeS1KS3BfNHpqTGU1MGNpdXE4bkYteUdLV1c5RzhCSG5tMzdYVFZ4TUpBMUF6aDBqSGktalkya0wxWldqbTRMc3lnSFE5SlZkZWtoLUllaWpKRndlb05KTXZ5bjVUYXhaSDA4MVhOM2Y1WjBCaDNkUHh3eExuSjJ0dGo2LWxrRFRpNFM1SEhuONIB6AFBVV95cUxPWm43UlkySXhBTDE0Y0dicDNXSW9JdEpYenkzOGs4N2hqaVE2RVNxY1NpUTlVcE92RTh3dnRTUTJpZFVmOUdYVy04eE5ISVVRZDJfWDFITkZYWHlqSDRLWVpSdVEzV3p2bjZ0UHpiNlRwejJCSnNCVDZNeWNJRUp5TWNjbVNzNE9qMlNVU3NtZm1ZN19tNF9MYi01Nk43cUpRZTlTMWVlVUZtcDZZcWh6dF9KNG40R3ZiQTR1ZjRzaUVETVNDUE9GX1FIZzVIdHdlZlpjdHA4X28zcElwQ0lqNUV4YVBBVk90?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "China launches 24th batch of low-orbit internet satellites from Hainan site The Times of India"
-    },
-    {
-      "titulo": "Long-Term Culture of U87MG Glioblastoma Cells Reprograms Metabolism, Impacts Aggressiveness and Alters Drug Responses",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-14",
-      "url": "https://doi.org/10.1007/s12013-026-02121-0",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "It is known that prolonged cell passaging may affect the outcomes of cell-based experiments. This study aimed to comprehensively investigate the consequences of long-term culture of U87MG glioblastoma cells, focusing on cell metabolism, morphology, tumorigenicity and drug response. U87MG (L) cells subjected to long-term culturing (20 passages) displayed altered morphology and significantly enhanced autofluorescence of lipofuscin, a well-established marker of oxidative stress and cellular senescence, compared with control U87MG cells maintained for only 5 passages. Fluorescence-lifetime imaging"
-    },
-    {
-      "titulo": "'I still miss him': China’s AI crackdown leaves users mourning lost virtual boyfriends",
-      "fuente": "The Times of India",
-      "fecha": "2026-08-11",
-      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUUp6cmRqVXBHUEJacE9DZTZuWFVpcE5DR0pUdTRjRUhsX3Z5N2lrOTdxV3RaZWg3MEtjcWFpNHFFdGxTcENrVDdZN0ZzcDd0bC1xRlRweHJDYm9BWjVOWFhOeWEwczNZUEdIWTROZkdVRDN5bUEzSmdqcjFBSXZNZDFvSWVfN1ZaUTAtYkY0SnR0OFh4TEJaLWpWYzZ4OWx2NVlFWW1kRlpfSkhIZGc3M0ctUnBSa1o0Tk5oWW9vSi16SGp0V1hubWdPVC1uSVVaSTY4eXhWak1hUF9HX0czaVhmN3JCSjlmLW5ZR9IB8gFBVV95cUxNNjVhZzN2YzRheHhfcHpURFlFOGtUdlo0U01zS29YNnBrdl9WVXlyR1NYTTZFUHBRVlVsdHk1OWVpd2ZxOEx3LXRrY0dmRTVtWlFGLUFGRGtyX0dWNTR5Tld0TmtyVHhPbHp5eVlQdVlpUjBtZFkyRmc5eU1MaE9kNS1KVktLcVpjQWVsUnU3cHN1dG8xVHBTRzI2UmVmZllpbkF0OUE3QTYzQ2NJY1QyXy1lNHBfUmtnN05oMVlXd0Zua0dsYlUwUDIxNnZhQWxpbFZGMjNJZmR4UFZpVGRMeW9NbHh0SHVNU0pJSlBQaG9WUQ?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "'I still miss him': China’s AI crackdown leaves users mourning lost virtual boyfriends The Times of India"
-    },
-    {
-      "titulo": "Watch: Chinese rocket explodes shortly after liftoff from Wenchang spaceport",
-      "fuente": "The Times of India",
-      "fecha": "2026-08-10",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNTzg4SF9iZUhGZEZ1R3I0Ymp4VFZMWWJPR0ZqcUktcE9CM0tPbFhEMDBkcm1FMkRuRUt6Z212SVgzUGhEMkZEQnN5Q0hkU3F6YjV5cmxGdURmc2dLTWEyeTR3cFlUV2RpazVYaHJHUkxiRW5vaW1DSFZBN1JKY19ocHFvd1B6emZ5N3lLUUVUTEhJN2ZRd0tla0QyQVNMdzBDU0pHNldJekdsUDZmWndOVTdNaHBiQmtqYzNfX0tYLVk0dkxvWDNENW5PMTgtQ0NpWWthWVo1d3o5aEltaTI2SE00b9IB6AFBVV95cUxPNURaRmtCa1AwZzdINjFGWWZFMVhPMEZGSnNySnZWaDZNbHhNVVhaSnRERzRQT1BBSVk1clRySDd4d1pRWllOclY2X1d1dXJkV2ZoUXFCd1BUNXFVTk1odzZoUTNCZnNkRXNXLVQzc2hLbS12TUdGcjJfcFpZVzJXc3dDX3YyTTQtMzBVZEM4N3VaN0wydkdkSTlieVhjZHROOEp3MGltNEVmT2JWamxJRmh2M1RkMzY0WjdqWS14dWNLcXRONUFrRE9GZUViM3RHVWxVNjhlekNoNUhuN296aWNaeVdRZVhj?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Watch: Chinese rocket explodes shortly after liftoff from Wenchang spaceport The Times of India"
-    },
-    {
-      "titulo": "Typhoon Dolphin nears China: Flights disrupted, ports shut as storm strengthens",
-      "fuente": "The Times of India",
-      "fecha": "2026-08-08",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPYktNWjhDTmhrbE9YdTZHaHlFQnVOMFN0S1JScy1vUW5yemRPWVlvaFJiNkFSY0NhNGphaXhaYXF3OTJrZTYwSzR6RTZMUEs4SzJhZWwzcW5pZnF5bHEyQzFNTVhOT1pjWTJYcWdSTWpsLUdBY1VEc0VSNGVEcm1iTEdiWlI5ZVhidUNTalJFS0kwVDRLdlYwQjZZQTd6RXFjOHVfS1g0b3pKNnl6NTZTdGNpU09UaUJkLWFxTDl2a0NDVmFudGdEbVJOajF3NVgteXdsMlRxOEZoTktHZVVIb2lkak1EQdIB6wFBVV95cUxPSDNQMjk0UHE3THk3S2t4MlJzZURSUGM5dEhmUWY0OGR6TldWRUxRdFROOVk1MVRLTDBmcXpUR0NvdUFDWDVyNGh4WHI0WjRwek5XWW5HNTlUODQwdjF0Mjd4eHFuMnlvQjcxTWtzV3dyTW9xeHZMUjJKRC16X2JNb3BzRjJHNllMa3dVbVhYazJPcnM5cGk5bW1fa2NtODV0RlM2dlZLS3hTaDJwMnhLZG52VWozNS0ycVZrcGk4cTROXy1Cczh4ZlYyTzdKUy15VlBabWhPZ011dVRleXo1SVdKNWxvaVVIM2Iw?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Typhoon Dolphin nears China: Flights disrupted, ports shut as storm strengthens The Times of India"
-    },
-    {
-      "titulo": "Patient dies in China biotech company’s gene editing trial",
-      "fuente": "The Times of India",
-      "fecha": "2026-08-07",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOZGhaT2RtZFl4Zmo0cDBoRVlLREI5RnNpU2dzZWU4bjJ5ZTVPWGhIb1NvU3AyOHFIbnhYS3cyTFpjdzBzOTVKeWdod1o3MHpqenJIdGZhQk9lcmtYekpHUG8wVjBqYlcxQXVNWW16U2dFc1RjRUJwcWdoRTNHSFBYRXVXNk1MLXF5VWdZMUZHUnk2bEtZYzdsa1VGVWU0NmFzVjBxb3RRX2hfbFp5ZEVES3oyb0F2TWtWUGNlNV8zNEZ5eVBSRDZJeTRwNNIB0AFBVV95cUxQLUprMmRzd2ZjQUJiY0drLUlaOU5ORzhKckNCRU85cWEzTXV6OHZrcFNlY0c3TGFSSlhQMVA2VkpoWkM5dFZxVjE1YWQyeldWZ0FiMml2YzhOOWYzN1E0bFZjQ1prUklEejBObDhKYS1fSzJmeU1Wc2FpNzNPdlUzem1XemFobHBXb0lsVWpEaE51ZFlldkdidml6aEJrM041YjhONzFrU0VwY3ZKTFVTOG0zV2NUWVU1Q0ROU0hrYTQ2dFlWLW9aUXppUTBGdlh0?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Patient dies in China biotech company’s gene editing trial The Times of India"
-    },
-    {
-      "titulo": "Species-specific functions of CSRP3 in satellite cell-driven muscle regeneration and relevance to porcine stem cell therapy",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-07",
-      "url": "https://doi.org/10.1186/s13619-026-00294-w",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Background Skeletal muscle function deteriorates with injury, disease, or aging. While stem cell therapies offer therapeutic potential, concerns remain regarding the safety and efficacy of transplanted cells. Satellite cells (SCs), the primary endogenous stem cells responsible for muscle repair, demonstrate safe transplantation but limited clinical effectiveness. A deeper understanding of the mechanisms regulating SC activation and differentiation is critical for improving muscle regeneration strategies. Methods We examined the role of CSRP3 in SC-mediated muscle repair using injury models and"
-    },
-    {
-      "titulo": "SLF2 and SMC5 dysfunction drives HSC aging and predisposes to MDS, defining a new inherited bone marrow failure syndrome",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-07",
-      "url": "https://doi.org/10.1038/s41375-026-03061-7",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Inherited bone marrow failure syndromes (IBMFS) comprise a heterogeneous group of genetic disorders and are associated with an increased risk of myelodysplastic syndromes (MDS). We and others recently identified pathogenic variants in SLF2 and SMC5 as the cause of Atelis Syndrome, a neurodevelopmental disorder accompanied by hematological abnormalities, including anemia and lymphopenia. However, the mechanisms underlying the associated hematopoietic dysfunction remain unclear. Through longitudinal follow-up and re-evaluation, we found that some patients developed MDS at a young age. To elucida"
-    },
-    {
-      "titulo": "Advancing the Future: Assessing Emerging Pathways for Expanding Organ Access in India",
-      "fuente": "orfonline.org",
-      "fecha": "2026-08-06",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMWJBRXFEU3o4b0JMMHlaSXo1X05VajN2WEVMVXVrUUxvSlFNcWpEemxkMFBQUUVROTlFYUIxQk1qa1k4aE9LdkNaeGhRanRaVzdQMWRiZmlEV3NPeE1lV2xXU1djQWczT1lKZy04N0hpQVc0a1BFRU4yeXNrR0RQSVZkU2htTzZablNJNXIwNm9BeDhFQlk4cjJQTGdBTzkzMk1JU1JrZGZuamkxNDhPZHliRmpVZW80c3JSN1gzR3FiSEJ6TWc?oc=5",
-      "tipo": "prensa",
-      "nivel": 3,
-      "etiqueta_nivel": "reescritura / sin verificar",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Advancing the Future: Assessing Emerging Pathways for Expanding Organ Access in India orfonline.org"
-    },
-    {
-      "titulo": "FGFR2 mediates the progression of colorectal cancer by promoting the expression of HIF-1α via the PI3K/AKT/mTOR pathway",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-06",
-      "url": "https://doi.org/10.1016/j.tice.2026.103843",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Background Colorectal cancer (CRC) is a common malignancy worldwide, and its progression is associated with dysregulated signaling pathways. Fibroblast growth factor receptor 2 (FGFR2) is frequently overexpressed in CRC and correlated with poor prognosis, but whether it mediates hypoxia-inducible factor-1α (HIF-1α) to promote tumor progression remains unclear. Methods The expression and prognostic value of FGFR2 and HIF-1α in CRC were analyzed via bioinformatics. Clinicopathological specimens were obtained and immunohistochemical staining was performed to explore the correlations between FGFR2"
-    },
-    {
-      "titulo": "Restoring the powerhouse: mitochondrial transplantation in regenerative medicine and cancer therapy",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-06",
-      "url": "https://doi.org/10.1039/d6nr00488a",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Mitochondrial dysfunction acts as a central contributor to diverse pathologies, ranging from neurodegenerative disorders to cancer, yet traditional pharmacotherapy often fails to restore organelle bioenergetics. Building on the discovery of natural intercellular mitochondrial transfer, Mitochondrial Transplantation (MtT) has emerged as a groundbreaking strategy to replace damaged organelles with healthy exogenous mitochondria. The present review synthesizes the recent progress in MtT, highlighting the intervention's dual therapeutic role: restoring metabolic homeostasis in regenerative medicin"
-    },
-    {
-      "titulo": "Heterogeneous human muscle fibroadipogenic progenitors include a DLK1&lt;sup&gt;+&lt;/sup&gt; subpopulation that prevents fatty infiltration after injury",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-05",
-      "url": "https://doi.org/10.1126/scitranslmed.aeb7213",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "Fatty infiltration and fibrosis drive poor outcomes after chronic muscle injury. Here, we characterized fibroadipogenic progenitor cell (FAP) subpopulations from healthy and injured human rotator cuff muscle by single-cell RNA sequencing, full-spectrum flow cytometry, and functional assays and found distinct subpopulations, including a preadipogenic population that expresses delta-like noncanonical notch ligand 1 (DLK1 + ) and a prefibrogenic population that expresses decay-accelerating factor (CD55 + ). We used in vitro and flow cytometry experiments to show that human FAP lineages displayed "
-    },
-    {
-      "titulo": "A Double-Vessel Coronary Artery Bypass Grafting Porcine Model using Autologous Internal Mammary Veins",
-      "fuente": "Europe PMC",
-      "fecha": "2026-08-04",
-      "url": "https://doi.org/10.3791/72141",
-      "tipo": "paper",
-      "nivel": 1,
-      "etiqueta_nivel": "fuente primaria",
-      "relevancia": 1,
-      "categoria": "Otros",
-      "resumen_previo": "",
-      "extracto": "The saphenous vein is one of the most commonly used conduits in coronary artery bypass grafting (CABG). However, the high long-term failure rate limits its clinical efficacy. Although hemodynamic factors are widely believed to drive vein graft failure (VGF), the exact underlying mechanisms remain unclear. Currently, the rat common carotid artery interposition vein graft model serves as the primary animal model for investigating VGF. However, substantial differences in cardiovascular physiology and hemodynamics between rats and humans limit the clinical translation of research findings. Pigs re"
+      "extracto": "Kidney International ScienceDirect.com"
     }
   ]
 }
