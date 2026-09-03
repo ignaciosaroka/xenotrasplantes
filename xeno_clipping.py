@@ -221,41 +221,26 @@ FEEDS_DIRECTOS = [
     ("Science (noticias)",   "https://www.science.org/rss/news_current.xml", 2),
 
     # --- comunicados institucionales (nivel 1) ---
-    # Acá anuncian los centros y las empresas ANTES de que exista la nota de
-    # prensa: la planta de United Therapeutics y el proyecto XeNid de Hannover
-    # aparecieron primero acá. No tienen muro de pago y no dependen de que
-    # Google News los indexe.
-    ("EurekAlert (medicina)",
-     "https://www.eurekalert.org/rss/medicine_health.xml", 1),
-    ("idw (ciencia alemana)",  "https://idw-online.de/en/rss", 1),
+    # De los cinco que se probaron el 3/09/2026, EurekAlert e idw ya no
+    # tienen feed (0 de 0: la dirección no existe). Quedan los tres que
+    # respondieron. Aportaron 0 en esa corrida, pero son baratos y son la
+    # única vía por la que podría entrar un comunicado institucional.
     ("Bioengineer",            "https://bioengineer.org/feed/", 1),
     ("News-Medical",
      "https://www.news-medical.net/syndication.axd?format=rss", 1),
     ("Medical Xpress",
      "https://medicalxpress.com/rss-feed/medications-news/", 1),
 
-    # --- feeds por TEMA (nivel 2) ---
-    # Un feed angosto cubre meses; uno ancho, horas. El de Nature guarda 75
-    # notas de todos los temas —un día de producción— y por eso nunca trae
-    # nada. Estos, en cambio, son de temas de bajo volumen: sus últimas 15
-    # entradas pueden abarcar medio año. Es la forma de que un feed sirva
-    # para una ventana larga.
+    # --- feeds por tema ---
+    # Se probaron ocho feeds temáticos de ScienceDaily. Traían 60 entradas
+    # cada uno —o sea que sí son profundos, a diferencia de los feeds
+    # generales— pero de 480 entradas ninguna mencionaba el campo. La razón
+    # de fondo: esos medios casi no escriben de xenotrasplantes. Se dejan
+    # los dos más cercanos al tema y se descartan los otros seis.
     ("ScienceDaily · clonación",
      "https://www.sciencedaily.com/rss/plants_animals/cloning.xml", 2),
-    ("ScienceDaily · transgénicos",
-     "https://www.sciencedaily.com/rss/plants_animals/genetically_modified.xml", 2),
     ("ScienceDaily · terapia génica",
      "https://www.sciencedaily.com/rss/health_medicine/gene_therapy.xml", 2),
-    ("ScienceDaily · enfermedad renal",
-     "https://www.sciencedaily.com/rss/health_medicine/kidney_disease.xml", 2),
-    ("ScienceDaily · bioética",
-     "https://www.sciencedaily.com/rss/science_society/bioethics.xml", 2),
-    ("ScienceDaily · biotecnología",
-     "https://www.sciencedaily.com/rss/plants_animals/biotechnology.xml", 2),
-    ("ScienceDaily · sistema inmune",
-     "https://www.sciencedaily.com/rss/health_medicine/immune_system.xml", 2),
-    ("ScienceDaily · cerdos y ganado",
-     "https://www.sciencedaily.com/rss/plants_animals/cows,_sheep,_pigs.xml", 2),
 ]
 
 
@@ -1045,8 +1030,17 @@ def recolectar_edgar():
                "forms": "8-K,10-Q,10-K,S-1,424B4",
            }))
 
+    # La SEC rechaza con 403 a quien no se identifica: exige un User-Agent
+    # con nombre y contacto. No es opcional ni negociable.
     try:
-        datos = _traer_json(url)
+        pedido = urllib.request.Request(url, headers={
+            "User-Agent": "Monitoreo xenotrasplantes monitoreo@xenotrasplantes.org",
+            "Accept": "application/json",
+            "Accept-Encoding": "gzip, deflate",
+            "Host": "efts.sec.gov",
+        })
+        with urllib.request.urlopen(pedido, timeout=30) as r:
+            datos = json.loads(r.read().decode("utf-8"))
     except Exception as e:
         print(f"    ERROR en EDGAR: {e}")
         return []
