@@ -207,8 +207,10 @@ INCLUIR_FEEDS_DIRECTOS = True
 FEEDS_DIRECTOS = [
     # --- reporteo original (nivel 2) ---
     # OJO: estos feeds sólo traen los últimos 10-25 artículos, o sea unas
-    # pocas horas de producción. No alcanzan para cubrir una semana; por eso
-    # además se los busca por sitio en BUSQUEDAS_SITIOS, más abajo.
+    # pocas horas de producción de un medio que cubre todo el sector salud.
+    # En la práctica dieron 0 de 164 en una ventana de 30 días. Se dejan por
+    # si la corrida es del día, pero lo que rinde son los feeds angostos de
+    # más abajo.
     ("STAT News",            "https://www.statnews.com/feed/", 2),
     ("Fierce Biotech",       "https://www.fiercebiotech.com/rss/xml", 2),
     ("Endpoints News",       "https://endpoints.news/feed/", 2),
@@ -217,6 +219,43 @@ FEEDS_DIRECTOS = [
      "https://www.technologyreview.com/topic/biotechnology/feed", 2),
     ("Nature (noticias)",    "https://www.nature.com/nature.rss", 2),
     ("Science (noticias)",   "https://www.science.org/rss/news_current.xml", 2),
+
+    # --- comunicados institucionales (nivel 1) ---
+    # Acá anuncian los centros y las empresas ANTES de que exista la nota de
+    # prensa: la planta de United Therapeutics y el proyecto XeNid de Hannover
+    # aparecieron primero acá. No tienen muro de pago y no dependen de que
+    # Google News los indexe.
+    ("EurekAlert (medicina)",
+     "https://www.eurekalert.org/rss/medicine_health.xml", 1),
+    ("idw (ciencia alemana)",  "https://idw-online.de/en/rss", 1),
+    ("Bioengineer",            "https://bioengineer.org/feed/", 1),
+    ("News-Medical",
+     "https://www.news-medical.net/syndication.axd?format=rss", 1),
+    ("Medical Xpress",
+     "https://medicalxpress.com/rss-feed/medications-news/", 1),
+
+    # --- feeds por TEMA (nivel 2) ---
+    # Un feed angosto cubre meses; uno ancho, horas. El de Nature guarda 75
+    # notas de todos los temas —un día de producción— y por eso nunca trae
+    # nada. Estos, en cambio, son de temas de bajo volumen: sus últimas 15
+    # entradas pueden abarcar medio año. Es la forma de que un feed sirva
+    # para una ventana larga.
+    ("ScienceDaily · clonación",
+     "https://www.sciencedaily.com/rss/plants_animals/cloning.xml", 2),
+    ("ScienceDaily · transgénicos",
+     "https://www.sciencedaily.com/rss/plants_animals/genetically_modified.xml", 2),
+    ("ScienceDaily · terapia génica",
+     "https://www.sciencedaily.com/rss/health_medicine/gene_therapy.xml", 2),
+    ("ScienceDaily · enfermedad renal",
+     "https://www.sciencedaily.com/rss/health_medicine/kidney_disease.xml", 2),
+    ("ScienceDaily · bioética",
+     "https://www.sciencedaily.com/rss/science_society/bioethics.xml", 2),
+    ("ScienceDaily · biotecnología",
+     "https://www.sciencedaily.com/rss/plants_animals/biotechnology.xml", 2),
+    ("ScienceDaily · sistema inmune",
+     "https://www.sciencedaily.com/rss/health_medicine/immune_system.xml", 2),
+    ("ScienceDaily · cerdos y ganado",
+     "https://www.sciencedaily.com/rss/plants_animals/cows,_sheep,_pigs.xml", 2),
 ]
 
 
@@ -229,6 +268,10 @@ FILTRO_FEEDS = [
     "genetically modified pig", "egenesis", "revivicor", "united therapeutics",
     "clonorgan", "makana", "qihan", "choironex", "organ shortage",
     "cerdo", "porcino",
+    # términos que aparecen en comunicados institucionales, donde el titular
+    # suele nombrar el proyecto y no la técnica
+    "xenotransplantat", "xenoniere", "schwein", "organspende",
+    "gene-edited", "galsafe", "decedent", "brain-dead recipient",
 ]
 
 # --- Niveles de fuente ---------------------------------------------------------
@@ -895,6 +938,312 @@ def recolectar_ensayos():
     return salida
 
 
+# --- Fuentes adicionales -------------------------------------------------------
+# Cada una tapa un hueco distinto del embudo. Todas son gratis y sin clave.
+# Si alguna se cae o cambia de formato, avisa y devuelve vacío: nunca corta la
+# corrida.
+
+INCLUIR_CROSSREF = True
+INCLUIR_EDGAR = True
+INCLUIR_REPORTER = True
+INCLUIR_ISRCTN = True
+
+# Términos para las fuentes que buscan por texto libre.
+CONSULTA_LIBRE = "xenotransplantation"
+CONSULTA_LIBRE_ALT = ["xenotransplant", "pig organ transplant",
+                      "porcine xenograft"]
+
+
+def recolectar_crossref():
+    """
+    Papers y preprints vía Crossref.
+
+    Europe PMC cubre bien lo biomédico indexado en PubMed, pero se pierde lo
+    que sale en revistas fuera de ese índice, los preprints de servidores que
+    no deposita, y los artículos recién publicados que todavía no llegaron.
+    Crossref tiene el DOI de casi todo lo que se publica, y aparece antes.
+    """
+    if not INCLUIR_CROSSREF:
+        return []
+
+    print("  consultando: Crossref (DOI de todo lo publicado)")
+    desde = (datetime.now(timezone.utc)
+             - timedelta(days=VENTANA_DIAS)).strftime("%Y-%m-%d")
+
+    url = ("https://api.crossref.org/works?"
+           + urllib.parse.urlencode({
+               "query.bibliographic": CONSULTA_LIBRE,
+               "filter": f"from-created-date:{desde}",
+               "rows": 60,
+               "select": ("DOI,title,container-title,created,abstract,type,"
+                          "publisher"),
+               "mailto": "monitoreo@xenotrasplantes.local",
+           }))
+
+    try:
+        datos = _traer_json(url)
+    except Exception as e:
+        print(f"    ERROR en Crossref: {e}")
+        return []
+
+    salida = []
+    for it in datos.get("message", {}).get("items", []):
+        titulos = it.get("title") or []
+        if not titulos:
+            continue
+        titulo = titulos[0]
+
+        # Crossref indexa TODO, incluidos los xenoinjertos oncológicos. El
+        # filtro fuerte va acá.
+        if not _es_del_campo(titulo + " " + (it.get("abstract") or "")):
+            continue
+
+        try:
+            partes = it["created"]["date-parts"][0]
+            fecha = datetime(*(partes + [1, 1])[:3], tzinfo=timezone.utc)
+        except Exception:
+            fecha = datetime.now(timezone.utc)
+
+        revista = (it.get("container-title") or [it.get("publisher", "")])[0]
+        tipo = "preprint" if it.get("type") == "posted-content" else "paper"
+        resumen = re.sub(r"<[^>]+>", " ", it.get("abstract") or "")
+
+        salida.append({
+            "titulo": titulo,
+            "fuente": revista or "Crossref",
+            "url": f"https://doi.org/{it.get('DOI','')}",
+            "fecha": fecha,
+            "extracto": " ".join(resumen.split())[:600],
+            "tipo": tipo,
+        })
+
+    return salida
+
+
+def recolectar_edgar():
+    """
+    Hechos relevantes en la SEC (EDGAR full-text search).
+
+    Las empresas que cotizan tienen que informar a sus inversores antes de
+    hablar con la prensa: un freno regulatorio, un acuerdo o un resultado
+    aparece acá semanas antes que en los medios. Es la capa de anticipación
+    que le falta a la sección de industria.
+    """
+    if not INCLUIR_EDGAR:
+        return []
+
+    print("  consultando: SEC EDGAR (hechos relevantes)")
+    hoy = datetime.now(timezone.utc)
+    desde = (hoy - timedelta(days=VENTANA_DIAS)).strftime("%Y-%m-%d")
+
+    url = ("https://efts.sec.gov/LATEST/search-index?"
+           + urllib.parse.urlencode({
+               "q": f'"{CONSULTA_LIBRE}"',
+               "dateRange": "custom",
+               "startdt": desde,
+               "enddt": hoy.strftime("%Y-%m-%d"),
+               "forms": "8-K,10-Q,10-K,S-1,424B4",
+           }))
+
+    try:
+        datos = _traer_json(url)
+    except Exception as e:
+        print(f"    ERROR en EDGAR: {e}")
+        return []
+
+    salida = []
+    for h in datos.get("hits", {}).get("hits", []):
+        f = h.get("_source", {})
+        empresa = (f.get("display_names") or ["empresa no identificada"])[0]
+        formulario = f.get("file_type", "")
+        try:
+            fecha = datetime.strptime(f.get("file_date", "")[:10],
+                                      "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except Exception:
+            fecha = datetime.now(timezone.utc)
+
+        # El id trae "accession:documento"; se arma la URL del documento.
+        partes = (h.get("_id") or "").split(":")
+        enlace = "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany"
+        if len(partes) == 2:
+            acc = partes[0].replace("-", "")
+            cik = (f.get("ciks") or [""])[0].lstrip("0")
+            if cik:
+                enlace = (f"https://www.sec.gov/Archives/edgar/data/"
+                          f"{cik}/{acc}/{partes[1]}")
+
+        salida.append({
+            "titulo": f"{empresa} presenta un {formulario} que menciona "
+                      f"xenotrasplante",
+            "fuente": f"SEC EDGAR · {formulario}",
+            "url": enlace,
+            "fecha": fecha,
+            "extracto": (f"Presentación {formulario} de {empresa} ante la SEC. "
+                         f"El documento menciona xenotrasplante; hay que "
+                         f"abrirlo para ver en qué contexto."),
+            "tipo": "regulatorio",
+        })
+
+    return salida
+
+
+def recolectar_reporter():
+    """
+    Proyectos financiados por los NIH (RePORTER).
+
+    Es la señal más temprana de todas: un grupo consigue el financiamiento
+    uno o dos años antes de publicar nada. Sirve para ver qué se viene y
+    quién lo está haciendo.
+    """
+    if not INCLUIR_REPORTER:
+        return []
+
+    print("  consultando: NIH RePORTER (proyectos financiados)")
+    hoy = datetime.now(timezone.utc)
+    desde = (hoy - timedelta(days=VENTANA_DIAS)).strftime("%Y-%m-%d")
+
+    cuerpo = json.dumps({
+        "criteria": {
+            "advanced_text_search": {
+                "operator": "and",
+                "search_field": "projecttitle,abstracttext",
+                "search_text": CONSULTA_LIBRE,
+            },
+            "project_start_date": {"from_date": desde,
+                                   "to_date": hoy.strftime("%Y-%m-%d")},
+        },
+        "include_fields": ["ProjectTitle", "ProjectNum", "Organization",
+                           "ProjectStartDate", "AbstractText",
+                           "AwardAmount"],
+        "limit": 30,
+    }).encode("utf-8")
+
+    try:
+        pedido = urllib.request.Request(
+            "https://api.reporter.nih.gov/v2/projects/search",
+            data=cuerpo,
+            headers={"Content-Type": "application/json",
+                     "User-Agent": NAVEGADOR})
+        with urllib.request.urlopen(pedido, timeout=30) as r:
+            datos = json.loads(r.read().decode("utf-8"))
+    except Exception as e:
+        print(f"    ERROR en RePORTER: {e}")
+        return []
+
+    salida = []
+    for p in datos.get("results", []):
+        titulo = p.get("project_title", "")
+        if not _es_del_campo(titulo + " " + (p.get("abstract_text") or "")):
+            continue
+
+        try:
+            fecha = datetime.strptime(p.get("project_start_date", "")[:10],
+                                      "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except Exception:
+            fecha = datetime.now(timezone.utc)
+
+        org = (p.get("organization") or {}).get("org_name", "")
+        num = p.get("project_num", "")
+        monto = p.get("award_amount")
+
+        salida.append({
+            "titulo": titulo,
+            "fuente": f"NIH RePORTER · {org}" if org else "NIH RePORTER",
+            "url": f"https://reporter.nih.gov/project-details/{num}",
+            "fecha": fecha,
+            "extracto": (f"Proyecto {num} en {org}. "
+                         + (f"Monto: USD {monto:,}. " if monto else "")
+                         + " ".join((p.get("abstract_text") or "").split())[:400]),
+            "tipo": "financiamiento",
+        })
+
+    return salida
+
+
+def recolectar_isrctn():
+    """
+    Ensayos registrados fuera de Estados Unidos (ISRCTN).
+
+    ClinicalTrials.gov cubre bien lo estadounidense, pero el campo tiene dos
+    polos y el otro es China; además Europa y Japón registran aparte. ISRCTN
+    es el registro internacional con API abierta, así que tapa parte de ese
+    hueco geográfico.
+    """
+    if not INCLUIR_ISRCTN:
+        return []
+
+    print("  consultando: ISRCTN (ensayos fuera de EE.UU.)")
+    url = ("https://www.isrctn.com/api/query/format/default?"
+           + urllib.parse.urlencode({"q": CONSULTA_LIBRE, "limit": 30}))
+
+    try:
+        pedido = urllib.request.Request(url, headers={"User-Agent": NAVEGADOR})
+        with urllib.request.urlopen(pedido, timeout=30) as r:
+            crudo = r.read().decode("utf-8", "replace")
+    except Exception as e:
+        print(f"    ERROR en ISRCTN: {e}")
+        return []
+
+    # La API devuelve XML. Se parsea sin dependencias, tolerando cambios de
+    # esquema: si no encuentra nada, devuelve vacío en vez de romper.
+    salida = []
+    try:
+        import xml.etree.ElementTree as ET
+        raiz = ET.fromstring(crudo)
+        for nodo in raiz.iter():
+            if not nodo.tag.endswith("fullTrial"):
+                continue
+            textos = {c.tag.split("}")[-1]: (c.text or "")
+                      for c in nodo.iter() if c.text}
+            titulo = (textos.get("scientificTitle")
+                      or textos.get("title", ""))
+            if not titulo or not _es_del_campo(titulo):
+                continue
+            ident = textos.get("isrctn", "")
+            salida.append({
+                "titulo": titulo,
+                "fuente": "ISRCTN",
+                "url": f"https://www.isrctn.com/ISRCTN{ident}",
+                "fecha": datetime.now(timezone.utc),
+                "extracto": " ".join(
+                    (textos.get("plainEnglishSummary", "")).split())[:400],
+                "tipo": "ensayo",
+            })
+    except Exception as e:
+        print(f"    ERROR al leer ISRCTN: {e}")
+        return []
+
+    return salida
+
+
+def _es_del_campo(texto):
+    """
+    ¿Este texto habla de xenotrasplante de órganos a humanos?
+
+    Existe porque las fuentes de texto libre —Crossref, RePORTER, ISRCTN—
+    devuelven mucho 'xenograft' oncológico: tumor humano implantado en ratón,
+    que no tiene nada que ver. Y también injertos dentales de colágeno.
+    Exige que aparezca el campo Y una marca de origen animal.
+    """
+    t = normalizar(texto)
+    if not t:
+        return False
+
+    campo = ("xenotransplant" in t or "xenotrasplante" in t
+             or "xenograft" in t or "xenoinjerto" in t)
+    if not campo:
+        return False
+
+    animal = any(x in t for x in (
+        "pig", "porcine", "swine", "cerdo", "porcino", "schwein",
+        "baboon", "primate", "galsafe", "gal knockout", "alpha-gal"))
+    organo = any(x in t for x in (
+        "kidney", "heart", "liver", "lung", "islet", "organ", "cornea",
+        "thymus", "rinon", "corazon", "higado", "pulmon", "organo"))
+
+    return animal and organo
+
+
 def recolectar_patentes():
     """Patentes concedidas vía PatentsView. Se saltea si no hay clave."""
     if not CLAVE_PATENTES:
@@ -1558,10 +1907,16 @@ def main():
 
     print("\n[4/7] Recolectando ensayos y patentes...")
     ensayos = recolectar_ensayos()
+    ensayos += recolectar_isrctn()
     patentes = recolectar_patentes()
     print(f"      {len(ensayos)} ensayos · {len(patentes)} patentes")
 
-    crudos += ciencia + ensayos + patentes
+    print("\n[4b/7] Fuentes complementarias...")
+    otros = (recolectar_crossref() + recolectar_edgar()
+             + recolectar_reporter())
+    print(f"      {len(otros)} ítems de Crossref, EDGAR y RePORTER")
+
+    crudos += ciencia + ensayos + patentes + otros
 
     print("\n[5/7] Filtrando, deduplicando y descartando ya vistos...")
     antes_excl = len(crudos)
