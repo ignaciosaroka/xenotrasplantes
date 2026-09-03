@@ -122,6 +122,32 @@ BUSQUEDAS_EN = [
 # Búsquedas por nombre propio. Esta es la capa que más rinde: muchos
 # comunicados y papers no usan la palabra "xenotrasplante" en el titular,
 # pero sí nombran a la empresa, al centro médico o al investigador.
+# Búsquedas por MEDIO, usando el operador source: de Google News.
+#
+# Distinto de site:, que ya se probó y falló (Google ignora los términos y
+# devuelve las noticias generales del medio; ver INCLUIR_BUSQUEDAS_SITIOS).
+# source: es un operador propio de Google News y filtra por el medio dentro
+# del índice de noticias, donde SÍ están los titulares de los medios con muro
+# de pago aunque el texto no sea accesible.
+#
+# El objetivo acá no es traer notas para resumir: es que el titular y el link
+# de STAT, Nature o Endpoints aparezcan en el informe aunque no se pueda leer
+# el cuerpo. Sin esto, esos medios no existen para el sistema.
+BUSQUEDAS_FUENTES = [
+    'xenotransplantation source:"STAT"',
+    'pig organ transplant source:"STAT"',
+    'xenotransplantation source:"Nature"',
+    'xenotransplantation source:"Science"',
+    'xenotransplantation source:"Endpoints News"',
+    'pig organ transplant source:"Fierce Biotech"',
+    'xenotransplantation source:"MIT Technology Review"',
+    'pig kidney transplant source:"Reuters"',
+    'pig organ transplant source:"Associated Press"',
+    'xenotransplantation source:"The New York Times"',
+    'pig transplant source:"The Washington Post"',
+    'xenotransplantation source:"NPR"',
+]
+
 BUSQUEDAS_ACTORES = [
     # empresas
     'eGenesis xenotransplant',
@@ -490,7 +516,8 @@ def recolectar_google_news():
 
     trabajos = ([(c, "es", False) for c in BUSQUEDAS_ES] +
                 [(c, "en", False) for c in BUSQUEDAS_EN] +
-                [(c, "en", False) for c in BUSQUEDAS_ACTORES])
+                [(c, "en", False) for c in BUSQUEDAS_ACTORES] +
+                [(c, "en", False) for c in BUSQUEDAS_FUENTES])
 
     if INCLUIR_BUSQUEDAS_SITIOS:
         trabajos += [(f"site:{d} ({TERMINOS_SITIOS})", "en", True)
