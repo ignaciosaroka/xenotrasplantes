@@ -122,31 +122,18 @@ BUSQUEDAS_EN = [
 # Búsquedas por nombre propio. Esta es la capa que más rinde: muchos
 # comunicados y papers no usan la palabra "xenotrasplante" en el titular,
 # pero sí nombran a la empresa, al centro médico o al investigador.
-# Búsquedas por MEDIO, usando el operador source: de Google News.
+# Búsquedas por medio: PROBADAS Y DESCARTADAS (3/09/2026).
 #
-# Distinto de site:, que ya se probó y falló (Google ignora los términos y
-# devuelve las noticias generales del medio; ver INCLUIR_BUSQUEDAS_SITIOS).
-# source: es un operador propio de Google News y filtra por el medio dentro
-# del índice de noticias, donde SÍ están los titulares de los medios con muro
-# de pago aunque el texto no sea accesible.
+# Se probaron doce consultas con el operador source: de Google News
+# (source:"STAT", source:"Nature", etc.), buscando que al menos el titular y
+# el link de los medios con muro de pago entraran al sistema. Las doce
+# dieron cero. Google no respeta ese operador en el RSS, igual que ya pasaba
+# con site: (ver INCLUIR_BUSQUEDAS_SITIOS).
 #
-# El objetivo acá no es traer notas para resumir: es que el titular y el link
-# de STAT, Nature o Endpoints aparezcan en el informe aunque no se pueda leer
-# el cuerpo. Sin esto, esos medios no existen para el sistema.
-BUSQUEDAS_FUENTES = [
-    'xenotransplantation source:"STAT"',
-    'pig organ transplant source:"STAT"',
-    'xenotransplantation source:"Nature"',
-    'xenotransplantation source:"Science"',
-    'xenotransplantation source:"Endpoints News"',
-    'pig organ transplant source:"Fierce Biotech"',
-    'xenotransplantation source:"MIT Technology Review"',
-    'pig kidney transplant source:"Reuters"',
-    'pig organ transplant source:"Associated Press"',
-    'xenotransplantation source:"The New York Times"',
-    'pig transplant source:"The Washington Post"',
-    'xenotransplantation source:"NPR"',
-]
+# Conclusión: esos medios no entran por el script. La única vía que los
+# alcanza es el barrido expandido, que corre con búsqueda web real al armar
+# el informe.
+BUSQUEDAS_FUENTES = []
 
 BUSQUEDAS_ACTORES = [
     # empresas
@@ -1072,6 +1059,7 @@ def clasificar(items, cliente):
     aprobados = []
     menciones = []
     descartados = []
+    fallidas = []          # tandas que no se pudieron clasificar
     TANDA = 12
 
     for inicio in range(0, len(items), TANDA):
@@ -1107,6 +1095,7 @@ def clasificar(items, cliente):
             veredictos = json.loads(texto)
         except Exception as e:
             print(f"    ERROR al clasificar: {e}")
+            fallidas.extend(tanda)
             continue
 
         for v in veredictos:
@@ -1127,6 +1116,19 @@ def clasificar(items, cliente):
                 descartados.append(item)
 
         time.sleep(1)
+
+    # Si el triaje falló (sin crédito en la API, caída del servicio, cambio de
+    # formato), el material recolectado NO se tira: se devuelve sin puntuar,
+    # igual que en modo --sin-triaje, y el triaje lo hace después quien arma
+    # el informe. Perder una recolección entera por un problema de la API
+    # sería el peor resultado posible: el trabajo ya está hecho.
+    if fallidas:
+        print(f"\n      {len(fallidas)} ítems quedaron sin clasificar por "
+              f"errores de la API.")
+        print("      Se exportan igual, sin puntuar, para que el triaje lo "
+              "haga quien arme el informe.")
+        sin_puntuar, _, _ = sin_clasificar(fallidas)
+        aprobados.extend(sin_puntuar)
 
     return aprobados, menciones, descartados
 
