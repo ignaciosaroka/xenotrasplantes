@@ -102,6 +102,10 @@ BUSQUEDAS_ES = [
     'xenotrasplante ensayo clínico',
     'xenotrasplante bioética',
     'trasplante animal humano rechazo',
+    # agregadas 1/10/2026: notas que no usan "xenotrasplante" ni "de cerdo"
+    # pegado al órgano (ej. Radio Mitre: "cerdos ... clave para trasplantes")
+    'cerdos trasplantes',
+    '"órganos de cerdo"',
 ]
 
 BUSQUEDAS_EN = [
@@ -117,6 +121,26 @@ BUSQUEDAS_EN = [
     'xenotransplantation ethics',
     'PERV porcine endogenous retrovirus',
     'decedent study pig organ',
+    # agregadas 1/10/2026: titulares que hablan de "pigs"/"pig organs" sin
+    # nombrar el órgano (ej. Gizmodo Science Fair, NYU Langone)
+    '"organ transplantation" pigs',
+    '"pig organs"',
+]
+
+# --- Ediciones regionales de Google News (agregado 1/10/2026) -----------------
+# Las búsquedas en inglés salían sólo por la edición de EE.UU. (gl=US), que
+# relega a la prensa india y australiana. El insumo del 1/10/2026 tenía siete
+# notas indias (India Today, Times of India, Daijiworld, NewsBytes, Business
+# Upturn, Equitybulls) y dos australianas (MJA InSight, The Limbic) que el
+# script no trajo. India es además un frente propio: guías nacionales de
+# xenotrasplante y la inversión de Natco Pharma en eGenesis.
+# Las BUSQUEDAS_EN se repiten en cada edición de esta lista. Los duplicados
+# entre ediciones los saca la deduplicación por título, como siempre.
+# Costo: len(BUSQUEDAS_EN) consultas más por edición (~20 s c/u).
+EDICIONES_EXTRA_EN = [
+    ("en-IN", "IN"),   # India
+    ("en-GB", "GB"),   # Reino Unido
+    ("en-AU", "AU"),   # Australia
 ]
 
 # Búsquedas por nombre propio. Esta es la capa que más rinde: muchos
@@ -144,6 +168,8 @@ BUSQUEDAS_ACTORES = [
     '"Qihan Biotech"',
     '"Clonorgan"',
     '"CrofaBiotech"',
+    'eGenesis',                  # sin "xenotransplant": notas financieras
+    '"Natco" eGenesis',          # inversor indio en eGenesis (2024, 2026)
     # centros
     '"NYU Langone" xenotransplant',
     '"Massachusetts General" pig transplant',
@@ -160,6 +186,8 @@ BUSQUEDAS_ACTORES = [
     'FDA xenotransplantation',
     'INCUCAI xenotrasplante',
     'WHO xenotransplantation',
+    'ICMR xenotransplantation',  # India: guías nacionales (sept. 2026)
+    'India pig kidney transplant',
 ]
 
 # --- Literatura científica: Europe PMC -----------------------------------------
@@ -286,6 +314,9 @@ NIVEL_POR_DOMINIO = {
     "lanacion.com.ar": 2, "clarin.com": 2, "infobae.com": 2,
     "scientificamerican.com": 2, "newscientist.com": 2, "wired.com": 2,
     "medscape.com": 2, "kffhealthnews.org": 2, "cnn.com": 2, "nbcnews.com": 2,
+    # agregados 1/10/2026
+    "insightplus.mja.com.au": 2, "thelimbic.com": 2, "gizmodo.com": 2,
+    "smithsonianmag.com": 2, "business-standard.com": 2, "icmr.gov.in": 1,
 }
 
 # Dominios que ya demostraron no aportar: terminales de datos financieros,
@@ -343,6 +374,7 @@ MEDIOS_NIVEL_1 = [
     "business wire", "businesswire", "pr newswire", "prnewswire",
     "egenesis", "united therapeutics", "clinicaltrials.gov", "europe pmc",
     "uspto", "harvard", "incucai", "uba", "unsam", "conicet",
+    "icmr",
 ]
 
 MEDIOS_NIVEL_2 = [
@@ -353,6 +385,9 @@ MEDIOS_NIVEL_2 = [
     "la nación", "la nacion", "clarín", "clarin", "infobae", "japan times",
     "scientific american", "new scientist", "der spiegel", "le monde",
     "página/12", "pagina 12", "el mercurio", "la tercera",
+    # agregados 1/10/2026
+    "mja insight", "insightplus", "the limbic", "gizmodo", "smithsonian",
+    "business standard",
 ]
 
 # Medios que ya demostraron no aportar. No se recolectan.
@@ -490,6 +525,11 @@ def url_google_news(consulta, idioma, tramo=None):
         filtro = f"when:{VENTANA_DIAS}d"
 
     q = urllib.parse.quote(f"{consulta} {filtro}")
+    # Ediciones regionales en inglés: idioma viene como "en-IN", "en-GB"...
+    if idioma.startswith("en-"):
+        pais = idioma.split("-")[1]
+        return (f"https://news.google.com/rss/search?q={q}"
+                f"&hl={idioma}&gl={pais}&ceid={pais}:en")
     if idioma == "es":
         return (f"https://news.google.com/rss/search?q={q}"
                 f"&hl=es-419&gl=AR&ceid=AR:es-419")
@@ -532,7 +572,9 @@ def recolectar_google_news():
     trabajos = ([(c, "es", False) for c in BUSQUEDAS_ES] +
                 [(c, "en", False) for c in BUSQUEDAS_EN] +
                 [(c, "en", False) for c in BUSQUEDAS_ACTORES] +
-                [(c, "en", False) for c in BUSQUEDAS_FUENTES])
+                [(c, "en", False) for c in BUSQUEDAS_FUENTES] +
+                [(c, hl, False) for hl, _ in EDICIONES_EXTRA_EN
+                 for c in BUSQUEDAS_EN])
 
     if INCLUIR_BUSQUEDAS_SITIOS:
         trabajos += [(f"site:{d} ({TERMINOS_SITIOS})", "en", True)
