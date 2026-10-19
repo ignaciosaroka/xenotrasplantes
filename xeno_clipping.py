@@ -106,6 +106,14 @@ BUSQUEDAS_ES = [
     # pegado al órgano (ej. Radio Mitre: "cerdos ... clave para trasplantes")
     'cerdos trasplantes',
     '"órganos de cerdo"',
+    # agregadas 19/10/2026: la ronda de CrofaBiotech (US$6,7 M) salió en
+    # Forbes Argentina, Agroempresario y Ecosistema Startup con titulares
+    # que dicen "órganos porcinos", "cerdos clonados" o "startup argentina"
+    # y no "xenotrasplante" ni "órgano de cerdo"
+    '"órganos porcinos"',
+    '"cerdos clonados"',
+    '"cerdo clonado" trasplante',
+    'startup argentina órganos trasplantes',
 ]
 
 BUSQUEDAS_EN = [
@@ -168,6 +176,8 @@ BUSQUEDAS_ACTORES = [
     '"Qihan Biotech"',
     '"Clonorgan"',
     '"CrofaBiotech"',
+    '"Crofa Biotech"',           # agregado 19/10/2026: variante con espacio
+    'CrofaBiotech UNSAM',        # origen universitario (Noticias UNSAM)
     'eGenesis',                  # sin "xenotransplant": notas financieras
     '"Natco" eGenesis',          # inversor indio en eGenesis (2024, 2026)
     # centros
@@ -315,6 +325,8 @@ NIVEL_POR_DOMINIO = {
     "scientificamerican.com": 2, "newscientist.com": 2, "wired.com": 2,
     "medscape.com": 2, "kffhealthnews.org": 2, "cnn.com": 2, "nbcnews.com": 2,
     # agregados 1/10/2026
+    # agregados 19/10/2026 (alertas sobre CrofaBiotech)
+    "forbesargentina.com": 2, "noticias.unsam.edu.ar": 1,
     "insightplus.mja.com.au": 2, "thelimbic.com": 2, "gizmodo.com": 2,
     "smithsonianmag.com": 2, "business-standard.com": 2, "icmr.gov.in": 1,
 }
@@ -388,6 +400,8 @@ MEDIOS_NIVEL_2 = [
     # agregados 1/10/2026
     "mja insight", "insightplus", "the limbic", "gizmodo", "smithsonian",
     "business standard",
+    # agregado 19/10/2026
+    "forbes argentina",
 ]
 
 # Medios que ya demostraron no aportar. No se recolectan.
